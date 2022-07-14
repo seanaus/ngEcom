@@ -1,0 +1,30 @@
+.navBar {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .navPill {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 15px;
+    text-align: center;
+  }
+  .navLink {
+    text-decoration: none;
+    color: var(--themeFColor);
+  }
+  @media only screen and (min-width: 768px) {
+    .navBar {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    .burger-container {
+      display: none;
+    }
+    .navPill {
+      text-align: center;
+    }
+    .navLink {
+      text-align: center;
+    }
+  }

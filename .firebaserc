@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ngecom-e1c77": {
+      "hosting": {
+        "ng-Ecom": [
+          "ngecom-e1c77"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ngecom-e1c77"
+  }
+}

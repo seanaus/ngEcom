@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+    font-family: Arial, Verdana, Helvetica, Tahoma, Trebuchet MS, Times New Roman,
+      Georgia, Garamond, Courier New, Brush Script MT;
+    --themeBgColor: rgba(0, 0, 0);
+    --themeFColor: rgba(255, 255, 255);
+    --themeActiveLink: rgb(0, 223, 255);
+    --themeHighlightBgColor: rgb(255, 0, 0);
+    --themeHighlightFColor: rgb(180, 255, 0);
+    --themeHighlightOpacity: 0.4;
+    --themeButtonFace: rgb(255, 0, 0);
+    --themeButtonText: rgb(255, 255, 255);
+    --themeBoxShadow: rgba(136, 136, 136, 0.4);
+  }
+// html, body app-root {
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 100vh;
+//     padding: 0 15px;
+//     margin: 0;
+// }
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+app-footer {
+  margin-top: auto;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 30px;
+  // min-height: 100vh;
+  // margin: 5px auto;
+}

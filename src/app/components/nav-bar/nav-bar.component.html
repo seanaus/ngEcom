@@ -1,0 +1,5 @@
+<nav class="navBar">
+  <div *ngFor="let link of links" class="navPill" [routerLink]="[link.link]">
+    {{ link.label }}
+  </div>
+</nav>
