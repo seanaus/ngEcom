@@ -4,36 +4,49 @@
     user-select: none;
     box-sizing: border-box;
     font-family: Arial, Verdana, Helvetica, Tahoma, Trebuchet MS, Times New Roman,
-      Georgia, Garamond, Courier New, Brush Script MT;
-    --themeBgColor: rgba(0, 0, 0);
-    --themeFColor: rgba(255, 255, 255);
+        Georgia, Garamond, Courier New, Brush Script MT;
+    --themeBgColor: rgba(255, 255, 255);
+    --themeFColor: rgba(0, 0, 0);
+    --themeBgColorAlternate: rgba(0, 0, 0);
+    --themeFColorAlternate:rgba(255, 255, 255);
     --themeActiveLink: rgb(0, 223, 255);
-    --themeHighlightBgColor: rgb(255, 0, 0);
-    --themeHighlightFColor: rgb(180, 255, 0);
-    --themeHighlightOpacity: 0.4;
-    --themeButtonFace: rgb(255, 0, 0);
-    --themeButtonText: rgb(255, 255, 255);
-    --themeBoxShadow: rgba(136, 136, 136, 0.4);
-  }
-// html, body app-root {
-//     display: flex;
-//     flex-direction: column;
-//     min-height: 100vh;
-//     padding: 0 15px;
-//     margin: 0;
-// }
+    --themeBgColorPrimary: rgba(255, 105, 180, 1);
+    --themeBgFColorPrimary: rgba(255, 255, 255, 1);
+    --themeBgColorSecondary: rgba(26,26,255, 1);
+    --themeBgFColorSecondary: rgba(255, 255, 255, 1);
+    --themeNotVisisble: transparent;
+    --themeBoxShadow: rgba(0, 0, 0, 0.8);
+}
+
 app-root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0px;
 }
+
 app-footer {
-  margin-top: auto;
+    margin-top: auto;
 }
-.container {
-  display: flex;
-  flex-direction: column;
-  margin: 30px 30px;
-  // min-height: 100vh;
-  // margin: 5px auto;
+
+router-outlet {
+    padding: 15px;
+}
+
+.main {
+    padding: 15px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.icon:hover {
+    opacity: 0.5;
 }

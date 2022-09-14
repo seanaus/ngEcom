@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="pannel">
+        <div class="heading">CREATE USER</div>      
+        <div class="textBoxContainer">
+                <input type="text" 
+                        placeholder="FirstName" 
+                        id="firstName" [(ngModel)]="user.firstName">
+        </div>
+        <div class="textBoxContainer">
+                <input type="text" 
+                        placeholder="Last Name" 
+                        id="lastName" [(ngModel)]="user.lastName">
+        </div>
+        <div class="textBoxContainer">
+                <input type="text" 
+                        placeholder="Email" 
+                        id="email" [(ngModel)]="user.email">
+        </div>
+        <div class="textBoxContainer">
+                <input type="password"
+                        placeholder="Password" 
+                        id="password" [(ngModel)]="user.password">
+        </div>
+        <div class="textBoxContainer">
+                <input type="password" 
+                        placeholder="Confirm Password" 
+                        id="passwordConfirmation" [(ngModel)]="password2">
+        </div>
+        <div claSS="button-bar button-bar-ok">
+                <div class="button buttonOk"
+                        (click)="register(logIns.CreateWithEmailAndPassword)">OK</div>
+        </div>
+
+        <div class="heading" [class.hideMe] = "message ===''">{{ message }}</div>
+    </div>
+</div>
+

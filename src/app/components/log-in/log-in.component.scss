@@ -1,0 +1,136 @@
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pannel {
+    margin: 30px;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 350px;
+    box-shadow: 5px 5px 8px rgba(136, 136, 136, 0.4);
+    border: 1px solid rgba(136, 136, 136, 0.4);
+    border-radius: 5px;
+    padding: 8px;
+}
+.textBoxContainer {
+    display: flex;
+    padding: 0px 5px;
+}
+.heading {
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    padding: 8px 0px 8px 0px;
+    border: 1px solid rgba(136, 136, 136, 0.4);
+    box-shadow: 5px 5px 8px rgba(136, 136, 136, 0.4);
+
+}
+.errorPannel {
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    padding: 8px 0px 8px 0px;
+    color: red;
+}
+.link {
+    text-align: center;
+    margin: 10px 0 0 0;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+label {
+    display: block;
+    margin: 10px 0 0 0;
+}
+
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--themeNotVisible);
+}
+input:focus {
+    border-bottom: 1px solid var(--themeBgColorPrimary);
+}
+.hideMe {
+    display: none !important;
+}
+.buttonBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0px;
+    margin: 5px 0px 5px 0px;
+}
+.buttonBarGoogle {
+    justify-content: center;
+    margin: 5px 0px 5px 0px;
+}
+.button {
+    display: flex;
+    border-radius: 5px;
+    min-width: 100px;
+    cursor: pointer;
+    border: 1px solid rgba(136, 136, 136, 0.4);
+}
+.buttonCol {
+    padding: 8px 10px 8px 10px;
+    align-items: center;
+}
+.buttonCol:hover {
+    opacity: 0.8;
+}
+.buttonColIcon {
+    padding: 5px 10px 5px 10px;
+}
+.buttonColIcon:hover {
+    opacity: 0.8;
+}
+.buttonColImage {
+    padding: 15px 10px 5px 10px;
+}
+.buttonColImage:hover {
+    opacity: 0.8;
+}
+.buttonColLabel {
+    min-width: 80px;
+    text-align: center;
+    font-size: x-small;
+    font-weight: bold;
+}
+.buttonColLabel:hover {
+    opacity: 0.8;
+}
+.buttonLogIn {
+   color: var(--themeBgColorPrimary);
+}
+.buttonRegister {
+    color: var(--themeBgColorSecondary);
+}
+.material-icons {
+    text-align: center;
+    padding: 0px;
+}
+
+// .button-text {
+//     font-size: x-small;
+//     font-weight: bold;
+//     padding: 0px 15px;
+//     //text-align: center;
+//     //margin: auto 0 0 0;
+// }
+.google-image {
+    background-image: url("../../images/google.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+// .google-button {
+//     padding: 10px;
+//     flex-direction: row;
+// }

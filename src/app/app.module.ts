@@ -1,42 +1,51 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
-import { LocationComponent } from './components/location/location.component';
-import { CartComponent } from './components/cart/cart.component';
-import { LoginComponent } from './components/login/login.component';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { HomeComponent } from './components/home/home.component';
+import { CarsComponent } from './components/cars/cars.component';
+import { BreakingComponent } from './components/breaking/breaking.component';
+import { PartsComponent } from './components/parts/parts.component';
+import { RestorationComponent } from './components/restoration/restoration.component';
+import { LocationComponent } from './components/location/location.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './components/register/register.component';
+import { FormsModule } from '@angular/forms';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AboutComponent,
-    ProductListComponent,
-    ProductDetailsComponent,
-    LocationComponent,
-    CartComponent,
-    LoginComponent,
     NavBarComponent,
-    FooterComponent
+    HomeComponent,
+    CarsComponent,
+    BreakingComponent,
+    PartsComponent,
+    RestorationComponent,
+    LocationComponent,
+    FooterComponent,
+    LogInComponent,
+    RegisterComponent,
+    ProductCardComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

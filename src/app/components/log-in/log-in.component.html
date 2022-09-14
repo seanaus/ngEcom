@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="pannel">
+        <div class="heading">LOG IN</div>
+        <div class="textBoxContainer">
+                <input matInput type="text" 
+                        placeholder="Email" 
+                        id="email" [(ngModel)]="email">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="password"
+                        placeholder="Password" 
+                        id="password" [(ngModel)]="password">
+        </div>
+        <div class="buttonBar">
+                <div class="button buttonCol" routerLink="/register">
+                        <div class="buttonColIcon material-icons icon buttonRegister">add_circle</div>
+                        <div class="buttonColLabel">REGISTER</div>
+                </div>
+                <div class="button buttonCol" (click)="logIn(logIns.SignInWithEmailAndPassword)">
+                        <div class="buttonColIcon material-icons icon buttonLogIn">login</div>
+                        <div class="buttonColLabel">LOG IN</div>
+                </div>
+        </div>
+
+        <!-- <div class="heading" [class.hideMe] = "message ===''">{{ message }}</div> -->
+        <div class="heading">SIGN IN WITH</div>
+        <div class="buttonBar buttonBarGoogle">
+                <div class="button buttonCol" (click)="logIn(logIns.UseGoogleAuthentication)">
+                        <div class="buttonColImage google-image"></div>
+                        <div class="buttonColLabel">GOOGLE</div>
+                </div>
+        </div>
+        <div class="errorPannel" [class.hideMe] = "message ===''">{{ message }}</div>
+    </div>
+</div>

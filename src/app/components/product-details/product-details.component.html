@@ -1,1 +1,17 @@
-<p>product-details works!</p>
+<div class="container">
+    <div class="imgContainer">
+        <div class="image" style="background-image: url({{product.image}});"></div>
+    </div>
+    <div class="detailsContainer">
+        <div class="label name">{{product?.name}}</div>
+        <div class="label">{{product?.description}}</div>
+        <div class="label price">{{product?.unitCost | currency:'GDP':'£'}}</div>
+        <div class="toolbar">
+            <div class="button btnOk">ADD TO CART</div>
+        </div>
+
+    </div>
+</div>
+
+
+
