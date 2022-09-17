@@ -10,6 +10,7 @@ import { ProductService } from 'src/services/product.service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: any;
+  gallery: any;
   subscription: any
   // product: Product = {};
   Id: string ="";
@@ -23,14 +24,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.Id = (pId !== null) ? pId : "-1";
     this.getProduct(this.Id)
   }
-
   async getProduct(id: string) {
     const product$ = await this.productService.getProduct(id)
     product$.subscribe((product) => {
       this.product = product
+      console.log(product)
     })
   }
-
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();

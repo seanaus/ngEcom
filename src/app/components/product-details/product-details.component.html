@@ -9,7 +9,9 @@
         <div class="toolbar">
             <div class="button btnOk">ADD TO CART</div>
         </div>
-
+        <div class="gallery">
+            <div class="imageWrapper image" *ngFor="let img of product.gallery" style="background-image: url({{img}});"></div>
+        </div>
     </div>
 </div>
 
