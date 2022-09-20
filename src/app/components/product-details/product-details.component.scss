@@ -1,18 +1,13 @@
 .container {
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    margin: 50px 0px;
-    max-width: 80%;
-    margin: auto;
+    // max-width: 80%;
     border: 1px solid var(--themeBgColorAlternate);
     box-shadow: 10px 10px 8px var(--themeBoxShadow);
 }
 
 .imgContainer {
-    padding: 15px;
-    // border: 1px solid var(--themeBgColorAlternate);
-    // box-shadow: 10px 10px 8px var(--themeBoxShadow);
+    padding: 0px 15px;
     border-radius: 5px;
     margin: 5px 0px 5px 0px;
 }
@@ -23,15 +18,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+.nameContainer {
+    margin: 0px auto;
+}
 .detailsContainer {
     padding: 15px;
-    // border: 1px solid var(--themeBgColorAlternate);
-    // box-shadow: 10px 10px 8px var(--themeBoxShadow);
     border-radius: 5px;
     margin: 5px 0px 5px 0px;
 }
-
 .gallery {
     display: flex;
     flex-direction: row;
@@ -39,23 +33,15 @@
     flex-wrap: wrap;
     margin: 15px;
 }
-
 .imageWrapper {
     display: flex;
     flex-direction: column;
     width: 350px;
     height: 350px;
-    // border: 1px solid var(--themeBgColorAlternate);
-    // box-shadow: 10px 10px 8px var(--themeBoxShadow);
-    // margin: 15px 0px;
-    // justify-content: center;
-    //border-radius: 5px;
 }
 
 .imageWrapper:hover {
     cursor: pointer;
-    // border: 1px solid var(--themeBgColorAlternate);
-    // box-shadow: 10px 10px 8px var(--themeBoxShadow);
 }
 
 .image {
@@ -65,7 +51,7 @@
 }
 
 .label {
-    padding: 10px 0px;
+    padding: 10px;
 }
 
 .name {
@@ -100,11 +86,18 @@
 }
 
 @media only screen and (min-width: 768px) {
+    .container {
+        max-width: 80%;
+        margin: 50px auto 0px auto;
+    }
     .toolbar {
         text-align: right;
     }
 
     .price {
         text-align: right;
+    }
+    .imageWrapper {
+
     }
 }
