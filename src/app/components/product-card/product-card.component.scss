@@ -1,13 +1,13 @@
 .card {
     display: flex;
     flex-direction: column;
-    width: 350px;
     height: 500px;
     border: 1px solid var(--themeBgColorAlternate);
     box-shadow: 10px 10px 8px var(--themeBoxShadow);
     margin: 15px;
     cursor: pointer;
     border-radius: 5px;
+    min-width: 350px;
 }
 
 .labelGroup {
@@ -38,4 +38,10 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+@media only screen and (min-width: 768px) {
+    .card {
+        width: 350px;
+    }
 }
