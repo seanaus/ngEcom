@@ -18,12 +18,13 @@ export class AuthService {
   private readonly userDisposable: Subscription|undefined;
   public readonly user: Observable<User | null> = EMPTY;
   public isLoggedIn: boolean = false;
+  public userId: string = "";
   public errorCode: string = "";
 
   constructor(@Optional() private auth: Auth) {
     if (auth) {
       this.user = authState(this.auth).pipe(
-        tap(user => console.log('AuthService: user: ', user?.email)),
+        tap(user => console.log('AuthService: user: ', user?.email))
       );
       this.userDisposable = authState(this.auth).pipe(
         traceUntilFirst('auth'),

@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EMPTY } from 'rxjs/internal/observable/empty';
 import { Product } from 'src/models/product';
+import { AuthService } from 'src/services/auth.service';
+import { CartService } from 'src/services/cart.service';
 import { ProductService } from 'src/services/product.service';
+import { CookieService } from 'src/services/cookie.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,17 +15,23 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   product: any;
   gallery: any;
   subscription: any
-  // product: Product = {};
+  userId: string | undefined ;
   Id: string ="";
 
-  constructor(private productService: ProductService,
+  constructor(private authService: AuthService,
+              private productService: ProductService,
+              private cookieService: CookieService,
+              private cartService: CartService,
               private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    // this.subscription = this.authService.user.subscribe(user => {
+    //   this.userId = user?.uid
+    // });
     const routeParams = this.route.snapshot.paramMap;
     const pId = routeParams.get('id');
     this.Id = (pId !== null) ? pId : "-1";
-    this.getProduct(this.Id)
+    this.getProduct(this.Id);
   }
   async getProduct(id: string) {
     const product$ = await this.productService.getProduct(id)
@@ -40,10 +48,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   refreshImage(event: any) {
     const target = event.target as HTMLImageElement;
-    // const url = target.style.backgroundImage
-    // const url = target.id
-    // console.log(url)
     this.product.image = target.id;
+  }
+
+  addToCart(item: Product) {
+    //this.cookieService.setCookie("cartId", "xcgertu2091", 30);
+    // if(this.cartService.userId === undefined) {
+    //   this.cartService.init(this.userId)
+    // }
+    this.cartService.add(item)
   }
 
 }
