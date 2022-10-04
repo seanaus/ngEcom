@@ -22,9 +22,7 @@ export class PartsComponent implements OnInit {
     this.products = [];
     const product$ = await this.productService.getProducts()
     product$.subscribe((products) => {
-      products.forEach(product => {
-        this.products.push(product)
-      })
+        this.products= [...products]
     })
   }
 

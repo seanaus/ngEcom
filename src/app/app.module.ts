@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
+import { DatePipe } from '@angular/common'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

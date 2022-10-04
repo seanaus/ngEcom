@@ -20,6 +20,6 @@ export class ProductService {
 
   async getProduct(id: string) {
     const docRef = doc(this.db, 'products', id);
-    return docSnapshots(docRef).pipe(map(data => data.data()));
+    return docSnapshots(docRef).pipe(map(data => ({...data.data(),id})));
   }
 }
