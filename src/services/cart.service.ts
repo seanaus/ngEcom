@@ -9,6 +9,7 @@ import { CookieService } from './cookie.service';
 
 import { DatePipe } from '@angular/common'
 import { map } from 'rxjs';
+import { Cart } from 'src/models/cart';
 
 
 @Injectable({
@@ -21,7 +22,8 @@ export class CartService {
   totalCount = 0;
   totalCost = 0;
   created = new Date();
-  tempCart: any
+  cart: any
+
   constructor(private db: Firestore,
     private cookieService: CookieService,
     private datepipe: DatePipe) {
@@ -29,56 +31,78 @@ export class CartService {
   }
 
   async init() {
-
+    // LATER IF NO USERID ?????
     if(this.userId === null) this.userId = this.cookieService.getCookie("userId");
     if(this.cartId === null) this.cartId = this.cookieService.getCookie("cartId");
+
+    // Create Cart in Firebase & return CartId
     if(this.cartId === null) {
       const docRef = await this.saveCart();
       this.cartId = docRef.id;
       this.cookieService.setCookie("cartId", this.cartId, 30);
     }
-    const cart$ = await this.getCart()
+    const cart$= await this.getCart(this.cartId)
     cart$.subscribe((cart) => {
-      this.tempCart= cart;
+      this.cart = cart;
     })
-    this.totalCount = this.tempCart.totalCount;
-    this.totalCost = this.tempCart.totalCost;
-    this.created = this.tempCart.created;
-    // this.items = [...this.tempCart.items];
+    return Promise.resolve(true)
 
-    console.log("LOADED CART");
-    console.log(`Total Cost:${this.totalCost}`);
-    console.log(`Total Count:${this.totalCount}`);
-    console.log(`Created:${this.created}`);
-    console.log(JSON.stringify(this.items));
+    // const cart$ = await this.getCart(this.cartId);
+    // cart$.subscribe((cart) => {
+    //   this.cart= cart;
+    // })
+
+    // this.totalCount = this.cart.totalCount;
+    // this.totalCost = this.cart.totalCost;
+    // this.created = this.cart.created;
+    // this.items = [...this.cart.items];
+
+    // console.log("LOADED CART");
+    // console.log(`Total Cost:${this.totalCost}`);
+    // console.log(`Total Count:${this.totalCount}`);
+    // console.log(`Created:${this.created}`);
+    // console.log(JSON.stringify(this.cart));
   }
 
   itemExists(newItem: Product) {
     return this.items.findIndex(item => item.id === newItem.id)
   }
-  async getCart() {
-    const cartId = (this.cartId === null)? "": this.cartId
+  async getCart(cartId:string) {
+    // const cartId = (this.cartId === null)? "": this.cartId
     const docRef = doc(this.db, 'cart', cartId);
-    return docSnapshots(docRef).pipe(map(data => ({...data.data()})));
+    return docSnapshots(docRef).pipe(map(data => ({...data.data(), cartId})));
+    // docSnapshots(docRef).pipe(map(data => ({ ...data.data(), cartId })))
+    // .subscribe((cart) => {
+    //     this.cart= cart;
+    // })
+    // this.totalCount = this.cart.totalCount;
+    // this.totalCost = this.cart.totalCost;
+    // this.created = this.cart.created;
+    // this.items = [...this.cart.items];
   }
 
   async add(item: Product) {
+    // await this.init();
+    // console.log(this.cart);
     const index = this.itemExists(item)
     if(index === -1) {
-      this.items.push({
-        id: item.id,
-        code: item.code,
-        name: item.name,
-        image: item.image,
-        unitCost: item.unitCost,
-        cost: 0,
-        quantity: 1
-      });
+      this.cart.items = [...this.cart.items, {...item, cost:0, quantity:1}]
+      console.log(this.cart.items)
+      // this.items.push({
+      //   id: item.id,
+      //   code: item.code,
+      //   name: item.name,
+      //   image: item.image,
+      //   unitCost: item.unitCost,
+      //   cost: 0,
+      //   quantity: 1
+      // });
     } else {
       this.editQuantity("+",index)
     }
-    console.log(JSON.stringify(this.items));
+    // console.log(JSON.stringify(this.cart));
     await this.updateCart();
+    //this.logCart();
   }
 
   delete(index: number) {
@@ -118,6 +142,10 @@ export class CartService {
     }, {
       merge: true
     })
+  }
+
+  logCart() {
+    console.log(JSON.stringify(this.cart))
   }
 
 }
