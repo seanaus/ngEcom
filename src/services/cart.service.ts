@@ -46,79 +46,45 @@ export class CartService {
       this.cart = cart;
     })
     return Promise.resolve(true)
-
-    // const cart$ = await this.getCart(this.cartId);
-    // cart$.subscribe((cart) => {
-    //   this.cart= cart;
-    // })
-
-    // this.totalCount = this.cart.totalCount;
-    // this.totalCost = this.cart.totalCost;
-    // this.created = this.cart.created;
-    // this.items = [...this.cart.items];
-
-    // console.log("LOADED CART");
-    // console.log(`Total Cost:${this.totalCost}`);
-    // console.log(`Total Count:${this.totalCount}`);
-    // console.log(`Created:${this.created}`);
-    // console.log(JSON.stringify(this.cart));
   }
 
   itemExists(newItem: Product) {
-    return this.items.findIndex(item => item.id === newItem.id)
+    const items: CartItem[] = this.cart.items;
+    if (items !== undefined) {
+      return items.findIndex((item) => item.id === newItem.id)
+    } else {
+      return -1
+    }
   }
-  async getCart(cartId:string) {
-    // const cartId = (this.cartId === null)? "": this.cartId
+  async getCart(cartId: string) {
     const docRef = doc(this.db, 'cart', cartId);
     return docSnapshots(docRef).pipe(map(data => ({...data.data(), cartId})));
-    // docSnapshots(docRef).pipe(map(data => ({ ...data.data(), cartId })))
-    // .subscribe((cart) => {
-    //     this.cart= cart;
-    // })
-    // this.totalCount = this.cart.totalCount;
-    // this.totalCost = this.cart.totalCost;
-    // this.created = this.cart.created;
-    // this.items = [...this.cart.items];
   }
 
   async add(item: Product) {
-    // await this.init();
-    // console.log(this.cart);
     const index = this.itemExists(item)
-    if(index === -1) {
-      this.cart.items = [...this.cart.items, {...item, cost:0, quantity:1}]
-      console.log(this.cart.items)
-      // this.items.push({
-      //   id: item.id,
-      //   code: item.code,
-      //   name: item.name,
-      //   image: item.image,
-      //   unitCost: item.unitCost,
-      //   cost: 0,
-      //   quantity: 1
-      // });
+    if (index === -1) {
+      this.cart.items = [...this.cart.items, {...item, itemCost: item.unitCost, quantity:1}]
     } else {
       this.editQuantity("+",index)
     }
-    // console.log(JSON.stringify(this.cart));
     await this.updateCart();
-    //this.logCart();
   }
 
   delete(index: number) {
-    this.items.splice(index,1);
+    this.cart.items.splice(index,1);
   }
 
   editQuantity(option:string, index: number) {
     // const unitCost = (this.items[index].unitCost === undefined)? 0: this.items[index].unitCost
     if(option === "+") {
-      this.items[index].quantity++;
-      // this.items[index].cost =  unitCost * this.items[index].quantity
+      this.cart.items[index].quantity++;
+      this.cart.items[index].itemCost = this.cart.items[index].unitCost * this.cart.items[index].quantity
     }
     if(option === "-") {
       if(this.items[index].quantity > 1) {
-        this.items[index].quantity--;
-        // this.items[index].cost =  this.items[index].unitCost * this.items[index].quantity
+        this.cart.items[index].quantity--;
+        this.cart.items[index].itemCost =  this.cart.items[index].unitCost * this.cart.items[index].quantity
       } else {
         this.delete(index);
       }
@@ -128,7 +94,9 @@ export class CartService {
   async saveCart() {
     const colRef = collection(this.db, "cart")
     return await addDoc(colRef, {
+      id: this.cart.id,
       userId: this.userId,
+      items: []=[],
       totalCount: this.totalCount,
       totalCost: this.totalCost,
       created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
@@ -138,7 +106,7 @@ export class CartService {
     // const items= this.items as Array<any>;
     const docRef = doc(this.db, "cart", (this.cartId === null)? "": this.cartId);
     return setDoc(docRef, {
-      items: this.items
+      items: this.cart.items
     }, {
       merge: true
     })

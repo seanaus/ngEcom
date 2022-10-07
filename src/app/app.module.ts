@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { CartComponent } from './components/cart/cart.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DatePipe } from '@angular/common'
     LogInComponent,
     RegisterComponent,
     ProductCardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
