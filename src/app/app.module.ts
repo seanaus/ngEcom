@@ -23,7 +23,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 import { DatePipe } from '@angular/common';
-import { CartComponent } from './components/cart/cart.component'
+import { CartComponent } from './components/cart/cart.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CartComponent } from './components/cart/cart.component'
     RegisterComponent,
     ProductCardComponent,
     ProductDetailsComponent,
-    CartComponent
+    CartComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

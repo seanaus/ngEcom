@@ -9,13 +9,14 @@
     --themeFColor: rgba(0, 0, 0);
     --themeBgColorAlternate: rgba(0, 0, 0);
     --themeFColorAlternate:rgba(255, 255, 255);
+    --themeFColorDelete: rgba(255, 0, 0, 0.8);
     --themeActiveLink: rgb(0, 223, 255);
     --themeBgColorPrimary: rgba(255, 105, 180, 1);
     --themeBgFColorPrimary: rgba(255, 255, 255, 1);
     --themeBgColorSecondary: rgba(26,26,255, 1);
     --themeBgFColorSecondary: rgba(255, 255, 255, 1);
     --themeNotVisisble: transparent;
-    --themeBoxShadow: rgba(0, 0, 0, 0.8);
+    --themeBoxShadow: rgba(0, 0, 0, 0.3);
 }
 
 app-root {

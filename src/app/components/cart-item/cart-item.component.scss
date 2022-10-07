@@ -1,0 +1,32 @@
+.cartItem {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0px;
+    border: 1px solid var(--themeBgColorAlternate);
+    box-shadow: 10px 10px 8px var(--themeBoxShadow);
+    border-radius: 5px;
+}
+.image {
+    height: 400px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.name {
+    padding: 8px;
+    text-align: center;
+}
+
+.price {
+    padding: 8px;
+    text-align: center;
+}
+.quantity {
+    padding: 8px;
+    text-align: center;
+}
+.delete {
+    padding: 8px;
+    text-align: center;
+    color: var(--themeFColorDelete);
+}

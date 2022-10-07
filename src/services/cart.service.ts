@@ -82,7 +82,7 @@ export class CartService {
       this.cart.items[index].itemCost = this.cart.items[index].unitCost * this.cart.items[index].quantity
     }
     if(option === "-") {
-      if(this.items[index].quantity > 1) {
+      if (this.items[index].quantity > 1) {
         this.cart.items[index].quantity--;
         this.cart.items[index].itemCost =  this.cart.items[index].unitCost * this.cart.items[index].quantity
       } else {

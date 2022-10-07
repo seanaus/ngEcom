@@ -1,5 +1,5 @@
 import { Product } from 'src/models/product';
 export interface CartItem extends Product {
-    cost: number
-    quantity: number;
+    itemCost: number | 0
+    quantity: number | 0;
 }
