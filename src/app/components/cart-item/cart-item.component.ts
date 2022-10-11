@@ -13,4 +13,15 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  editQuantity(option: string) {
+    if(option === "+") {
+      this.item.quantity++;
+    } else {
+      if(this.item.quantity > 1) {
+        this.item.quantity --;
+      }
+    }
+
+  }
+
 }
