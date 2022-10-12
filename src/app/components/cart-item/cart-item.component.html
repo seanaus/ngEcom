@@ -1,14 +1,8 @@
 <div class="cartItem">
     <div class="name">{{item.name}}</div>
     <div class="image" style="background-image: url({{item.image}});"></div>
-    <!-- <div class="quantity">{{item.quantity}}</div> -->
-    <div class="quantity-container">
-      <div class="quantity-button quantity-reduce" (click)="editQuantity('-')">-</div>
-      <div class="quantity-display">{{item.quantity}}</div>
-      <!-- <div class="display">1</div> -->
-      <div class="quantity-button quantity-increase" (click)="editQuantity('+')">+</div>
-    </div>
+    <app-cart-item-quantity [idx] = "idx" [value]="item.quantity"></app-cart-item-quantity>
     <div class="price">{{item.itemCost | currency:'GDP':'£'}}</div>
-    <div class="material-icons icon delete">delete</div>
+    <div class="material-icons icon delete" (click)="removeItem(idx)">delete</div>
 </div>
 

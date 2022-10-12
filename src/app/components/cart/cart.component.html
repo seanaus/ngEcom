@@ -1,5 +1,9 @@
 <div class="container">
-    <div *ngFor="let item of items">
-        <app-cart-item [item] = "item"></app-cart-item>
+    <div *ngFor="let item of items; let i = index">
+        <app-cart-item [item] = "item" [idx] = "i"></app-cart-item>
     </div>
 </div>
+<div class="container">
+    <app-cart-totals></app-cart-totals>
+</div>
+

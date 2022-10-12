@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartItem } from 'src/models/cartItem';
+import { CartService } from 'src/services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,20 +9,13 @@ import { CartItem } from 'src/models/cartItem';
 })
 export class CartItemComponent implements OnInit {
   @Input() item: any;
-  constructor() { }
+  @Input() idx: any;
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
-  editQuantity(option: string) {
-    if(option === "+") {
-      this.item.quantity++;
-    } else {
-      if(this.item.quantity > 1) {
-        this.item.quantity --;
-      }
-    }
-
+  async removeItem(index:number) {
+    await this.cartService.delete(index);
   }
-
 }

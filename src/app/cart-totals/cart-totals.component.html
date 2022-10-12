@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="totalCountRow">
+        <div class="cell headerRow">Items</div>
+        <div class="cell dataRow">{{getTotalCount()}}</div>
+    </div>
+    <div class="totalCostRow">
+        <div class="cell headerRow">Total (Net)</div>
+        <div class="cell dataRow">{{getTotalCost() | currency:'GDP':'£'}}</div>
+    </div>
+    <div class="vatMetricRow">
+        <div class="cell headerRow">VAT (20%)</div>
+        <div class="cell dataRow">{{getVat(20) | currency:'GDP':'£'}}</div>
+    </div>
+    <div class="totalIncVat">
+        <div class="cell headerRow">Total (Gross)</div>
+        <div class="cell dataRow">{{getTotalIncVat(20) | currency:'GDP':'£'}}</div>
+    </div>
+</div>

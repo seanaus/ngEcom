@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.cell {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.headerRow {
+    background-color: var(--themeBgColorAlternate);
+    color: var(--themeFColorAlternate);
+    text-align: center;
+
+}
+
+.dataRow {
+    text-align: right;
+}
+
+.totalCountRow {}
+
+.totalCostRow {}
+
+.vatMetricRow {}
+
+.totalIncVat {}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .cell {
+        min-width: 100px;
+    }
+}

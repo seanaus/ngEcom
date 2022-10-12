@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="button reduce">-</div>
-  <div class="display" [(ngModel)]="value">{{value}}</div>
-  <!-- <div class="display">1</div> -->
-  <div class="button increase">+</div>
+  <div class="button reduce" (click)="editQuantity('-')">-</div>
+  <div class="display">{{value}}</div>
+  <!-- <div class="display" [(ngModel)]="value">{{value}}</div> -->
+  <div class="button increase" (click)="editQuantity('+')">+</div>
 </div>

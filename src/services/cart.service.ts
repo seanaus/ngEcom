@@ -11,11 +11,14 @@ import { DatePipe } from '@angular/common'
 import { map } from 'rxjs';
 import { Cart } from 'src/models/cart';
 
-
+// const getTotalCount = (total: number, item: any) => { return total + item.quantity }
+// const getTotalCost = (total: number, item:any) => { return total + item.cost }
+const aggregate = (total: number, value: any) => { return total + value }
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
   userId: string | null = null;
   cartId: string | null = null;
   items: CartItem[] = [];
@@ -53,11 +56,13 @@ export class CartService {
     const colRef = collection(this.db, "cart")
     return await addDoc(colRef, {
       userId: this.userId,
-      // items:[]=[],
       items: this.items as Array<any>,
       totalCount: this.totalCount,
       totalCost: this.totalCost,
       created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
+        + ":" + this.created.getHours()
+        + ":" + this.created.getMinutes()
+        + ":" + this.created.getSeconds()
     });
   }
   async getCart(cartId:string) {
@@ -71,18 +76,18 @@ export class CartService {
     this.logCart();
     const index = this.itemExists(item)
     if(index === -1) {
-      this.cart.items = [...this.cart.items, {...item, cost:item.unitCost, quantity:1}]
+      this.cart.items = [...this.cart.items, { ...item, cost: item.unitCost, quantity: 1 }];
+      await this.updateCart();
     } else {
       this.editQuantity("+",index)
-      this.quantity_counter ++
     }
+  }
+  async delete(index: number) {
+    this.cart.items.splice(index, 1);
     await this.updateCart();
   }
-  delete(index: number) {
-    this.items.splice(index,1);
-  }
 
-  editQuantity(option:string, index: number) {
+  async editQuantity(option:string, index: number) {
     if(option === "+") {
       this.cart.items[index].quantity++;
       this.cart.items[index].cost =  this.cart.items[index].unitCost * this.cart.items[index].quantity
@@ -95,21 +100,32 @@ export class CartService {
         this.delete(index);
       }
     }
+    await this.updateCart();
   }
 
-  async saveCart() {
-    const colRef = collection(this.db, "cart")
-    return await addDoc(colRef, {
-      userId: this.userId,
-      totalCount: this.totalCount,
-      totalCost: this.totalCost,
-      created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
-    });
+  calculateTotals() {
+    if (this.cart.items.length > 0) {
+      this.totalCount = this.cart.items.map((item: any) => { return item.quantity }).reduce(aggregate)
+      this.totalCost = this.cart.items.map((item: any) => { return item.cost }).reduce(aggregate)
+    }
   }
+  // async saveCart() {
+  //   const colRef = collection(this.db, "cart")
+  //   return await addDoc(colRef, {
+  //     userId: this.userId,
+  //     items: this.cart.items as Array<any>,
+  //     totalCount: this.totalCount,
+  //     totalCost: this.totalCost,
+  //     created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
+  //   });
+  // }
   async updateCart() {
+    this.calculateTotals()
     const docRef = doc(this.db, "cart", (this.cartId === null)? "": this.cartId);
     return setDoc(docRef, {
-      items: this.cart.items
+      items: this.cart.items,
+      totalCount: this.totalCount,
+      totalCost: this.totalCost
     }, {
       merge: true
     })
@@ -122,11 +138,11 @@ export class CartService {
 
 
 
-  async updateQuantity(cartId: string) {
-    const docRef = doc(this.db, 'cart', cartId);
-    await setDoc(docRef, {
-      quantity: increment(this.quantity_counter)
-    })
-  }
+  // async updateQuantity(cartId: string) {
+  //   const docRef = doc(this.db, 'cart', cartId);
+  //   await setDoc(docRef, {
+  //     quantity: increment(this.quantity_counter)
+  //   })
+  // }
 
 }
