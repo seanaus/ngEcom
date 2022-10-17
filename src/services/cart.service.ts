@@ -34,11 +34,21 @@ export class CartService {
     this.init();
   }
 
+  getCartId(): string {
+    let Id = "";
+    if (this.cookieService.getCookie("cartId") !== null) {
+      const cachedId = this.cookieService.getCookie("cartId")
+      if (cachedId !== null) {
+        Id = cachedId;
+      }
+    }
+    return Id
+  }
   async init() {
     // LATER IF NO USERID ?????
     if(this.userId === null) this.userId = this.cookieService.getCookie("userId");
-    if(this.cartId === null) this.cartId = this.cookieService.getCookie("cartId");
-
+    if (this.cartId === null) this.cartId = this.cookieService.getCookie("cartId");
+  
     // Create Cart in Firebase & return CartId
     if(this.cartId === null) {
       const docRef = await this.createCart();
@@ -57,8 +67,8 @@ export class CartService {
     return await addDoc(colRef, {
       userId: this.userId,
       items: this.items as Array<any>,
-      totalCount: this.totalCount,
-      totalCost: this.totalCost,
+      totalCount: 0,
+      totalCost: 0,
       created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
         + ":" + this.created.getHours()
         + ":" + this.created.getMinutes()
@@ -77,14 +87,14 @@ export class CartService {
     const index = this.itemExists(item)
     if(index === -1) {
       this.cart.items = [...this.cart.items, { ...item, cost: item.unitCost, quantity: 1 }];
-      await this.updateCart();
+      await this.updateCart(this.getCartId());
     } else {
       this.editQuantity("+",index)
     }
   }
   async delete(index: number) {
     this.cart.items.splice(index, 1);
-    await this.updateCart();
+    await this.getCartId();
   }
 
   async editQuantity(option:string, index: number) {
@@ -100,13 +110,13 @@ export class CartService {
         this.delete(index);
       }
     }
-    await this.updateCart();
+    await this.updateCart(this.getCartId());
   }
 
   calculateTotals() {
     if (this.cart.items.length > 0) {
-      this.totalCount = this.cart.items.map((item: any) => { return item.quantity }).reduce(aggregate)
-      this.totalCost = this.cart.items.map((item: any) => { return item.cost }).reduce(aggregate)
+      this.cart.totalCount = this.cart.items.map((item: any) => { return item.quantity }).reduce(aggregate)
+      this.cart.totalCost = this.cart.items.map((item: any) => { return item.cost }).reduce(aggregate)
     }
   }
   // async saveCart() {
@@ -119,13 +129,13 @@ export class CartService {
   //     created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
   //   });
   // }
-  async updateCart() {
+  async updateCart(cartId: string) {
     this.calculateTotals()
-    const docRef = doc(this.db, "cart", (this.cartId === null)? "": this.cartId);
+    const docRef = doc(this.db, "cart", cartId);
     return setDoc(docRef, {
       items: this.cart.items,
-      totalCount: this.totalCount,
-      totalCost: this.totalCost
+      totalCount: this.cart.totalCount,
+      totalCost: this.cart.totalCost
     }, {
       merge: true
     })
