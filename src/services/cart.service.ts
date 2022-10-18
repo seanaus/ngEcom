@@ -57,8 +57,8 @@ export class CartService {
     return await addDoc(colRef, {
       userId: this.userId,
       items: this.items as Array<any>,
-      totalCount: this.totalCount,
-      totalCost: this.totalCost,
+      totalCount: 0,
+      totalCost: 0,
       created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
         + ":" + this.created.getHours()
         + ":" + this.created.getMinutes()
@@ -96,17 +96,22 @@ export class CartService {
       if(this.cart.items[index].quantity > 1) {
         this.cart.items[index].quantity--;
         this.cart.items[index].cost =  this.cart.items[index].unitCost * this.cart.items[index].quantity
-      } else {
-        this.delete(index);
+      // } else {
+      //   this.delete(index);
       }
     }
     await this.updateCart();
   }
 
   calculateTotals() {
+    console.log("TOTALS");
+    console.log(JSON.stringify(this.cart));
     if (this.cart.items.length > 0) {
-      this.totalCount = this.cart.items.map((item: any) => { return item.quantity }).reduce(aggregate)
-      this.totalCost = this.cart.items.map((item: any) => { return item.cost }).reduce(aggregate)
+      this.cart.totalCount = this.cart.items.map((item: any) => { return item.quantity }).reduce(aggregate)
+      this.cart.totalCost = this.cart.items.map((item: any) => { return item.cost }).reduce(aggregate)
+    } else {
+      this.cart.totalCount = 0
+      this.cart.totalCost = 0
     }
   }
   // async saveCart() {
@@ -124,8 +129,8 @@ export class CartService {
     const docRef = doc(this.db, "cart", (this.cartId === null)? "": this.cartId);
     return setDoc(docRef, {
       items: this.cart.items,
-      totalCount: this.totalCount,
-      totalCost: this.totalCost
+      totalCount: this.cart.totalCount,
+      totalCost: this.cart.totalCost
     }, {
       merge: true
     })

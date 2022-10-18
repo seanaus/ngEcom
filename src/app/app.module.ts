@@ -26,7 +26,7 @@ import { DatePipe } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartItemQuantityComponent } from './components/cart-item-quantity/cart-item-quantity.component';
-import { CartTotalsComponent } from './cart-totals/cart-totals.component'
+import { CartTotalsComponent } from './components/cart-totals/cart-totals.component'
 
 @NgModule({
   declarations: [

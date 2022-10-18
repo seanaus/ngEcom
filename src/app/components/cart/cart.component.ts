@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/services/cart.service';
 import { CookieService } from 'src/services/cookie.service';
+import { SettingsService } from 'src/services/settings.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,26 +10,30 @@ import { CookieService } from 'src/services/cookie.service';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cart: any;
-  items: any =[];
-  subscription: any;
-  constructor(private cartService: CartService,private cookieService: CookieService) { }
+  settings: any;
+
+  constructor(private cartService: CartService,
+    private cookieService: CookieService,
+    private settingsService: SettingsService) { }
 
   async ngOnInit() {
     const cartId = this.cookieService.getCookie("cartId");
     if (cartId !== null) {
-      this.items = [];
+      ///////// GET CART ////////
       const cart$ = await this.cartService.getCart(cartId);
       cart$.subscribe((cart: any) => {
         this.cart = cart;
-        this.items = [...cart.items]
-      })  
+      })
+
+      ///////// GET SETTINGS ////////
+      const settings$ = await this.settingsService.getSettings();
+      settings$.subscribe((settings: any) => {
+        this.settings = settings;
+      })
     }
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
 }

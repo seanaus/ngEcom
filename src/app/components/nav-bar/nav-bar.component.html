@@ -31,6 +31,10 @@
     <div class="material-icons icon">my_location</div>
     <div class="label-text">LOCATION</div>
   </div>
+  <div class="navPill" [class.hideMe]="isCollapsed"  routerLink="/cart" routerLinkActive="active">
+    <div class="material-icons icon">shopping_cart</div>
+    <div class="label-text">Cart</div>
+  </div>
   <div class="navPill" [class.hideMe]="isCollapsed || isLoggedIn" routerLink="/logIn" routerLinkActive="active">
     <div class="material-icons icon">login</div>
     <div class="label-text">LOGIN</div>
