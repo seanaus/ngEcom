@@ -9,10 +9,10 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarsComponent } from './components/cars/cars.component';
-import { BreakingComponent } from './components/breaking/breaking.component';
-import { PartsComponent } from './components/parts/parts.component';
-import { RestorationComponent } from './components/restoration/restoration.component';
+// import { CarsComponent } from './components/cars/cars.component';
+// import { BreakingComponent } from './components/breaking/breaking.component';
+import { ProductsComponent } from './components/products/products.component';
+// import { RestorationComponent } from './components/restoration/restoration.component';
 import { LocationComponent } from './components/location/location.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LogInComponent } from './components/log-in/log-in.component';
@@ -33,10 +33,7 @@ import { CartTotalsComponent } from './components/cart-totals/cart-totals.compon
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    CarsComponent,
-    BreakingComponent,
-    PartsComponent,
-    RestorationComponent,
+    ProductsComponent,
     LocationComponent,
     FooterComponent,
     LogInComponent,

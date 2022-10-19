@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Firestore, collectionData, collection, doc } from '@angular/fire/firestore';
-import { Observable, of, map, tap } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
-import { UserService } from 'src/services/user.service';
+// import { Observable, of, map, tap } from 'rxjs';
+// import { AuthService } from 'src/services/auth.service';
+// import { UserService } from 'src/services/user.service';
 import { ProductService } from 'src/services/product.service';
 export const afc = (message: string) => { console.log(message) }
 
 @Component({
-  selector: 'app-parts',
-  templateUrl: './parts.component.html',
-  styleUrls: ['./parts.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class PartsComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   products: any = [];
-  subscription: any
+  // subscription: any
 
   constructor(private firestore: Firestore,
     private productService: ProductService) { }
@@ -26,10 +26,10 @@ export class PartsComponent implements OnInit {
     })
   }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.subscription) {
+  //     this.subscription.unsubscribe();
+  //   }
+  // }
 
 }

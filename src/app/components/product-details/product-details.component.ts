@@ -53,13 +53,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToCart(item: Product) {
-    //this.cookieService.setCookie("cartId", "xcgertu2091", 30);
-    // if(this.cartService.userId === undefined) {
-    //   this.cartService.init(this.userId)
-    // }
     this.cartService.add(item)
-    // this.router.navigateByUrl("/parts") 
-    this.router.navigateByUrl("/parts");
+    this.router.navigateByUrl("/products");
   }
 
 }
