@@ -1,18 +1,18 @@
-<div class="container" *ngIf="getTotalCount()>0">
+<div class="container" >
     <div class="totalCountRow">
         <div class="cell headerRow">Items</div>
-        <div class="cell dataRow">{{getTotalCount()}}</div>
+        <div class="cell dataRow totalCount">{{getTotalCount()}}</div>
     </div>
     <div class="totalCostRow">
         <div class="cell headerRow">Total (Net)</div>
-        <div class="cell dataRow">{{getTotalCost() | currency:'GDP':'£'}}</div>
+        <div class="cell dataRow totalNet">{{getTotalCost() | currency:'GDP':'£'}}</div>
     </div>
     <div class="vatMetricRow">
         <div class="cell headerRow">VAT {{getVatPercentage()}}%</div>
-        <div class="cell dataRow">{{getVat() | currency:'GDP':'£'}}</div>
+        <div class="cell dataRow totalVat">{{getVat() | currency:'GDP':'£'}}</div>
     </div>
     <div class="totalIncVat">
         <div class="cell headerRow">Total (Gross)</div>
-        <div class="cell dataRow">{{getTotalIncVat() | currency:'GDP':'£'}}</div>
+        <div class="cell dataRow totalGross">{{getTotalIncVat() | currency:'GDP':'£'}}</div>
     </div>
 </div>

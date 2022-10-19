@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/models/product';
 import { AuthService } from 'src/services/auth.service';
 import { CartService } from 'src/services/cart.service';
@@ -22,6 +22,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
               private productService: ProductService,
               private cookieService: CookieService,
               private cartService: CartService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   async ngOnInit() {
@@ -57,6 +58,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     //   this.cartService.init(this.userId)
     // }
     this.cartService.add(item)
+    // this.router.navigateByUrl("/parts") 
+    this.router.navigateByUrl("/parts");
   }
 
 }

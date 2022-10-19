@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/services/cart.service';
-// import { SettingsService } from 'src/services/settings.service';
 
 @Component({
   selector: 'app-cart-item-quantity',
@@ -10,16 +9,11 @@ import { CartService } from 'src/services/cart.service';
 export class CartItemQuantityComponent implements OnInit {
   @Input() idx: any;
   @Input() value: any;
-  // settings: any;
+
 
   constructor(private cartService: CartService) { }
 
-  async ngOnInit() {
-    // const settings$ = await this.settingsService.getSettings();
-    // settings$.subscribe((settings) => {
-    //   this.settings= settings;
-    // })
-    // return Promise.resolve(true)
+  ngOnInit(): void {
   }
   async editQuantity(option: string) {
     const refresh = (this.value > 1) ? true : false;
