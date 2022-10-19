@@ -2,19 +2,16 @@
     display: flex;
     flex-direction: column;
 }
-
 .cell {
     padding: 5px;
     border: 1px solid black;
 }
-
 .headerRow {
     background-color: var(--themeBgColorAlternate);
     color: var(--themeFColorAlternate);
     text-align: center;
 
 }
-
 .dataRow {
     text-align: right;
 }
@@ -26,13 +23,13 @@
     font-weight: bolder;
 }
 .totalCount {
-    // color: var(--themeFColorRed);
+    color: var(--themeFColorAmber);
 }
 .totalNet {
     color: var(--themeFColorGreen);
 }
 .totalVat {
-    color: var(--themeFColorAmber);
+    // color: var(--themeFColorAmber);
 }
 .totalGross {
     color: var(--themeFColorRed);
