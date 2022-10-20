@@ -13,7 +13,11 @@ export class CarouselComponent implements OnInit {
   slide: number = 0;
   slides: number = 0;
 
-  constructor(private carouselService: CarouselService) { }
+  constructor(private carouselService: CarouselService) {
+    setInterval(() => {
+      this.autoSlide();
+    }, 5000);
+  }
 
   async ngOnInit() {
     this.carousel = null;
@@ -23,15 +27,19 @@ export class CarouselComponent implements OnInit {
         this.slides = (this.carousel.items.length > 0) ? this.carousel.items.length -1  : 0
     })
     console.log(`Current Slide is ${this.slide}`)
+
   }
 
   prev() {
     this.slide= this.slide > 0 ?  this.slide -1 : this.slides;
-    console.log(`Current Slide is ${this.slide}`)
+    // console.log(`Current Slide is ${this.slide}`)
   }
   next() {
     this.slide= this.slide + 1 <= this.slides ? this.slide+1 : 0;
-    console.log(`Current Slide is ${this.slide}`)
+    // console.log(`Current Slide is ${this.slide}`)
+  }
+  autoSlide() {
+    this.slide= this.slide + 1 <= this.slides ? this.slide + 1 : 0;
   }
 
 }
