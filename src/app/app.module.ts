@@ -26,7 +26,8 @@ import { DatePipe } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartItemQuantityComponent } from './components/cart-item-quantity/cart-item-quantity.component';
-import { CartTotalsComponent } from './components/cart-totals/cart-totals.component'
+import { CartTotalsComponent } from './components/cart-totals/cart-totals.component';
+import { CarouselComponent } from './components/carousel/carousel.component'
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CartTotalsComponent } from './components/cart-totals/cart-totals.compon
     CartComponent,
     CartItemComponent,
     CartItemQuantityComponent,
-    CartTotalsComponent
+    CartTotalsComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

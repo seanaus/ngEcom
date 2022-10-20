@@ -1,0 +1,11 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  // background-color: aqua;
+}
+.slide {
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
