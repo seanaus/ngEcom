@@ -41,5 +41,9 @@ export class CarouselComponent implements OnInit {
   autoSlide() {
     this.slide= this.slide + 1 <= this.slides ? this.slide + 1 : 0;
   }
+  selectSlide(event: any) {
+    const target = event.target as HTMLImageElement;
+    this.slide = +target.id;
+  }
 
 }

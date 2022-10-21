@@ -1,11 +1,53 @@
 .carousel {
   display: flex;
   flex-direction: column;
-  // background-color: aqua;
 }
 .slide {
   height: 400px;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  animation-name: fadeIn;
+  animation-duration: 10s;
+}
+.controlContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+  //width: 150px;
+  margin: -35px auto 0 auto;
+}
+.btn {
+  padding: 5px 0px;
+  background-color: var(--themeFColor);
+  color: var(--themeBgColor);
+  opacity: 0.8;
+}
+.btn:hover {
+  cursor: pointer
+}
+.selectorBtn {
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--themeFColor);
+  // color: aliceblue;
+}
+.selectorBtn:hover {
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

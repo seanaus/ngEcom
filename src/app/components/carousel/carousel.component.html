@@ -4,7 +4,10 @@
 <div class="carousel">
   <div class="slide" style="background-image: url({{carousel?.items[slide]?.image}});"></div>
 </div>
-<div>
-  <button (click)="prev()">prev</button>
-  <button (click)="next()">next</button>
+<div class="controlContainer">
+  <div class="material-icons icon btn" (click)="prev()">chevron_left</div>
+  <div *ngFor="let item of carousel?.items; let i = index">
+    <div class="selectorBtn" [id]="i" (click)="selectSlide($event)"></div>
+  </div>
+  <div class="material-icons icon btn" (click)="next()">chevron_right</div>
 </div>
