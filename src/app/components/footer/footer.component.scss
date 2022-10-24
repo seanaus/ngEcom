@@ -2,20 +2,18 @@
     padding: 15px;
     display: grid;
     grid-template-columns: auto;
-    // border: 1px solid var(--themeBgColorAlternate);
-    // box-shadow: 10px 10px 8px var(--themeBoxShadow);
-    // border-radius: 15px;
-    margin: 20px;
+    background-color: var(--themeBgColorAlternate);
 }
 .col {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
+    color: var(--themeFColorAlternate);
 }
+
 @media only screen and (min-width: 768px) {
     .footer {
-        padding: 15px;
+        //padding: 15px;
         display: grid;
         grid-template-columns: auto auto auto;
     }
@@ -24,11 +22,17 @@
     }
     .col01 {
         grid-column: 1;
+        // border-left: 1px dotted black;
+        // border-right: 1px dotted black;
     }
     .col02 {
         grid-column: 2;
+        // border-left: 1px solid black;
+        // border-right: 1px solid black;
     }
     .col03 {
         grid-column: 3;
+        // border-left: 1px dotted black;
+        // border-right: 1px dotted black;
     }
 }
