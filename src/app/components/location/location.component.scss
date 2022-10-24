@@ -1,0 +1,27 @@
+.mapsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.mapsHeader {
+    font-size: xx-large;
+    margin-bottom: 10px;
+}
+
+.mapsDescription {
+    font-size: small;
+}
+
+.mapsImage {
+    width: 180px;
+    margin: 15px;
+}
+
+.mapsLink {
+    text-decoration: none;
+    color: var(--themeFColor);
+    cursor: pointer;
+}

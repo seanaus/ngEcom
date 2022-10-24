@@ -8,7 +8,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: background-image 2s linear;
+  //transition: background-image 1s ease;
+  // transition: background-image 1s linear;
+  //transition: background-image 1s ease-in;
+  //transition: background-image 1s ease-out;
+  transition: background-image 1s ease-in-out;
 }
 
 .controlContainer {
