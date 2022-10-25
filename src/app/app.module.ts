@@ -27,7 +27,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartItemQuantityComponent } from './components/cart-item-quantity/cart-item-quantity.component';
 import { CartTotalsComponent } from './components/cart-totals/cart-totals.component';
-import { CarouselComponent } from './components/carousel/carousel.component'
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
+import { ItemCardPannelComponent } from './components/item-card-pannel/item-card-pannel.component'
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { CarouselComponent } from './components/carousel/carousel.component'
     CartItemComponent,
     CartItemQuantityComponent,
     CartTotalsComponent,
-    CarouselComponent
+    CarouselComponent,
+    ItemCardComponent,
+    ItemCardPannelComponent
   ],
   imports: [
     BrowserModule,

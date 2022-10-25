@@ -8,7 +8,6 @@ import { Product } from 'src/models/product';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: any;
-
   constructor() { }
 
   ngOnInit(): void {

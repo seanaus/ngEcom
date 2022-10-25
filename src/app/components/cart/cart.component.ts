@@ -26,7 +26,7 @@ export class CartComponent implements OnInit, OnDestroy {
       })
 
       ///////// GET SETTINGS ////////
-      const settings$ = await this.settingsService.getSettings();
+      const settings$ = await this.settingsService.getSettings("project");
       settings$.subscribe((settings: any) => {
         this.settings = settings;
       })

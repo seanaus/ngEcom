@@ -1,4 +1,4 @@
-<div class="card cardImage" style="background-image: url({{product.image}});" [routerLink]="['product-detail/', product.id]">
+<div class="card cardImage" style="background-image: url({{product.image}});" [routerLink]="['product-detail/', this.product.id]">
     <div class="label labelName">{{product.name}}</div>
     <div class="label labelCost">{{product.unitCost | currency:'GDP':'£'}}</div>
 </div>

@@ -15,8 +15,7 @@ export class SettingsService {
 
   constructor(private db: Firestore) {}
 
-  async getSettings() {
-    const id = "project";
+  async getSettings(id:string) {
     const docRef = doc(this.db, 'settings', id);
     return docSnapshots(docRef).pipe(map(data => ({...data.data(),id})));
   }
