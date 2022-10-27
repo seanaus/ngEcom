@@ -1,12 +1,14 @@
-<div class="label price" *ngIf="itemType === 'product'">{{item?.unitCost | currency:'GDP':'£'}}</div>
-<div class="label price" *ngIf="itemType === 'cartItem'">{{item?.cost  | currency:'GDP':'£'}}</div>
+<div class="label labelUnitCost" *ngIf="itemType === 'product'">{{item?.unitCost | currency:'GDP':'£'}}</div>
+<div class="label labelCost" *ngIf="itemType === 'cartItem'">{{item?.cost  | currency:'GDP':'£'}}</div>
 <div class="container" *ngIf="itemType === 'cartItem'">
   <div class="button reduce material-icons icon" (click)="editQuantity('-')">remove</div>
   <div class="display">{{item?.quantity}}</div>
-  <!-- <div class="display" [(ngModel)]="value">{{value}}</div> -->
   <div class="button increase material-icons icon" (click)="editQuantity('+')">add</div>
 </div>
-<div class="label material-icons icon delete" *ngIf="itemType === 'cartItem'" (click)="removeItem(idx)">delete</div>
+<div class="label" *ngIf="itemType === 'cartItem'">
+  <div class="material-icons icon delete" (click)="removeItem(idx)">delete</div>
+</div>
+
 
 
 

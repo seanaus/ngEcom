@@ -19,13 +19,9 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
-
 import { DatePipe } from '@angular/common';
 import { CartComponent } from './components/cart/cart.component';
-import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { CartItemQuantityComponent } from './components/cart-item-quantity/cart-item-quantity.component';
 import { CartTotalsComponent } from './components/cart-totals/cart-totals.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
@@ -41,11 +37,8 @@ import { ItemCardPannelComponent } from './components/item-card-pannel/item-card
     FooterComponent,
     LogInComponent,
     RegisterComponent,
-    ProductCardComponent,
     ProductDetailsComponent,
     CartComponent,
-    CartItemComponent,
-    CartItemQuantityComponent,
     CartTotalsComponent,
     CarouselComponent,
     ItemCardComponent,

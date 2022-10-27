@@ -1,6 +1,8 @@
 .container {
     display: flex;
     flex-direction: column;
+    // padding: 15px;
+    margin: 5px;
 }
 .cell {
     padding: 5px;
@@ -34,6 +36,21 @@
 .totalGross {
     color: var(--themeFColorRed);
 }
+.button {
+  // color: rgb(255,255,255);
+  // width: 40px;
+  // border-radius: 5px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  padding: 10px;
+  background-color: var(--themeBgColorAlternate);
+  color: var(--themeFColorAlternate);
+  text-align: center;
+ }
+ .button:hover {
+  cursor: pointer;
+ }
 @media only screen and (min-width: 768px) {
     .container {
         flex-direction: row;

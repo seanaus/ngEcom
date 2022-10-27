@@ -1,8 +1,0 @@
-<div class="cartItem">
-    <div class="label name">{{item.name}}</div>
-    <div class="image" style="background-image: url({{item.image}});"></div>
-    <app-cart-item-quantity [idx] = "idx" [value]="item.quantity"></app-cart-item-quantity>
-    <div class="label price">{{item.cost | currency:'GDP':'£'}}</div>
-    <div class="label material-icons icon delete" (click)="removeItem(idx)">delete</div>
-</div>
-

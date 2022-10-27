@@ -11,12 +11,13 @@
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
+      // max-width: 80%;
     }
     app-cart-totals {
         margin: 0 0 0 auto;
     }
     .totalsContainer{
-        max-width: 80%;
+        // max-width: 80%;
     }
 
 }

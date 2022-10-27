@@ -2,12 +2,12 @@
   <div class="slide" style="background-image: url({{item.image}});"></div>
 </div> -->
 <div class="carousel">
-  <div class="slide" style="background-image: url({{carousel?.items[slide]?.image}});"></div>
+  <div class="slide kenburns-top-right" style="background-image: url({{carousel?.items[slide]?.image}});"></div>
 </div>
 <div class="controlContainer">
   <div class="material-icons icon btn" (click)="prev()">chevron_left</div>
   <div class="slideSelectContainer">
-    <div *ngFor="let item of carousel?.items; let idx = index" 
+    <div *ngFor="let item of carousel?.items; let idx = index"
           class="btn slideSelectBtn"
           (click)="selectSlide($event)"
           [id]="idx"

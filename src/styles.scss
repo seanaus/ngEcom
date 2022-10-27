@@ -33,11 +33,12 @@ app-footer {
 }
 
 router-outlet {
-   // padding: 15px;
+   padding: 0px;
 }
 
 .main {
-    padding: 15px;
+    // padding: 15px;
+    margin: auto 0 auto 0;
 }
 
 html,
