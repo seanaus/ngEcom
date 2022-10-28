@@ -11,7 +11,7 @@
         <div class="toolbar">
             <div class="button btnOk" (click)="addToCart(product)">ADD TO CART</div>
         </div>
-        <div class="gallery" *ngIf="product?.gallery.length>=0">
+        <div class="gallery" *ngIf="product?.gallery.length >=0">
             <div class="imageWrapper image" *ngFor="let img of product?.gallery" style="background-image: url({{img}});" [id]="img" (click)="refreshImage($event)"></div>
         </div>
     </div>

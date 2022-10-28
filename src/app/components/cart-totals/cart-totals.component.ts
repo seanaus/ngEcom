@@ -8,13 +8,14 @@ import { SettingsService } from 'src/services/settings.service';
   styleUrls: ['./cart-totals.component.scss']
 })
 export class CartTotalsComponent implements OnInit {
+  @Input() cartId: string = "";
   @Input() vatMetric: any;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-
   }
+  
   getVatPercentage() {
     return this.vatMetric * 100
   }

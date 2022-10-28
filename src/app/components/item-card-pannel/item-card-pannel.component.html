@@ -1,11 +1,11 @@
-<div class="label labelUnitCost" *ngIf="itemType === 'product'">{{item?.unitCost | currency:'GDP':'£'}}</div>
-<div class="label labelCost" *ngIf="itemType === 'cartItem'">{{item?.cost  | currency:'GDP':'£'}}</div>
-<div class="container" *ngIf="itemType === 'cartItem'">
+<div class="label labelUnitCost" *ngIf="cardType === cardTypes.Product">{{item?.unitCost | currency:'GDP':'£'}}</div>
+<div class="label labelCost" *ngIf="cardType === cardTypes.CartItem">{{item?.cost  | currency:'GDP':'£'}}</div>
+<div class="container" *ngIf="cardType === cardTypes.CartItem">
   <div class="button reduce material-icons icon" (click)="editQuantity('-')">remove</div>
   <div class="display">{{item?.quantity}}</div>
   <div class="button increase material-icons icon" (click)="editQuantity('+')">add</div>
 </div>
-<div class="label" *ngIf="itemType === 'cartItem'">
+<div class="label" *ngIf="cardType === cardTypes.CartItem">
   <div class="material-icons icon delete" (click)="removeItem(idx)">delete</div>
 </div>
 

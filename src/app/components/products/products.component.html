@@ -1,6 +1,5 @@
 <div class="partsContainer">
     <div *ngFor="let product of products; let idx = index;">
-        <!-- <app-product-card [product] = product></app-product-card> -->
-        <app-item-card [item] = product [itemType]="'product'" [idx]="idx"></app-item-card>
+        <app-item-card [item] = product [cardType]="cardType" [idx]="idx"></app-item-card>
     </div>
 </div>

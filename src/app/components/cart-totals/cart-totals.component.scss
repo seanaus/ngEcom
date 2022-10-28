@@ -2,55 +2,74 @@
     display: flex;
     flex-direction: column;
     // padding: 15px;
-    margin: 5px;
+    // margin: 5px;
 }
-.cell {
-    padding: 5px;
-    border: 1px solid black;
+
+.checkOutBtn {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 }
+
 .headerRow {
     background-color: var(--themeBgColorAlternate);
     color: var(--themeFColorAlternate);
     text-align: center;
 
 }
+
 .dataRow {
     text-align: right;
 }
 
 .cell {
-    //padding: 8px;
     text-align: center;
     font-size: larger;
     font-weight: bolder;
+    padding: 5px;
+    border: 1px solid black;
 }
+
 .totalCount {
     color: var(--themeFColorAmber);
 }
+
 .totalNet {
     color: var(--themeFColorGreen);
 }
+
 .totalVat {
     // color: var(--themeFColorAmber);
 }
+
 .totalGross {
     color: var(--themeFColorRed);
 }
+
 .button {
-  // color: rgb(255,255,255);
-  // width: 40px;
-  // border-radius: 5px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  padding: 10px;
-  background-color: var(--themeBgColorAlternate);
-  color: var(--themeFColorAlternate);
-  text-align: center;
- }
- .button:hover {
-  cursor: pointer;
- }
+    // color: rgb(255,255,255);
+    // width: 40px;
+    // border-radius: 5px;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: var(--themeBgColorAlternate);
+    color: var(--themeFColorAlternate);
+    text-align: center;
+    font-weight: bold;
+    margin: 5px auto 20px auto;
+
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 768px) {
     .container {
         flex-direction: row;
@@ -59,5 +78,12 @@
 
     .cell {
         min-width: 100px;
+    }
+
+    .checkOutBtn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

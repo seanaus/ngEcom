@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/models/product';
-
+import { ItemCardOptions } from 'src/enums/itemCardOptions';
 @Component({
   selector: 'app-item-card',
   templateUrl: './item-card.component.html',
@@ -9,13 +9,14 @@ import { Product } from 'src/models/product';
 export class ItemCardComponent implements OnInit {
   @Input() item: any;
   @Input() idx: any;
-  @Input() itemType: string = "";
+  @Input() cardType: number = 0;
 
+  cardOptions = ItemCardOptions
   routerLink: any = null;
   constructor() { }
 
   ngOnInit(): void {
-    if(this.itemType === "product") {
+    if (this.cardType === this.cardOptions.Product) {
       this.routerLink = ['product-detail/', this.item.id];
     }
   }

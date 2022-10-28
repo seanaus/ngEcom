@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/services/cart.service';
 import { CookieService } from 'src/services/cookie.service';
 import { SettingsService } from 'src/services/settings.service';
-
+import { ItemCardOptions } from 'src/enums/itemCardOptions';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,6 +11,7 @@ import { SettingsService } from 'src/services/settings.service';
 export class CartComponent implements OnInit, OnDestroy {
   cart: any;
   settings: any;
+  cardType = ItemCardOptions.CartItem;
 
   constructor(private cartService: CartService,
     private cookieService: CookieService,

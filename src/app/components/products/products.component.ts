@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Firestore, collectionData, collection, doc } from '@angular/fire/firestore';
-// import { Observable, of, map, tap } from 'rxjs';
-// import { AuthService } from 'src/services/auth.service';
-// import { UserService } from 'src/services/user.service';
+// import { Firestore, collectionData, collection, doc } from '@angular/fire/firestore';
 import { ProductService } from 'src/services/product.service';
+import { ItemCardOptions } from '../../../enums/itemCardOptions'
 export const afc = (message: string) => { console.log(message) }
 
 @Component({
@@ -13,10 +11,9 @@ export const afc = (message: string) => { console.log(message) }
 })
 export class ProductsComponent implements OnInit {
   products: any = [];
-  // subscription: any
+  cardType = ItemCardOptions.Product
 
-  constructor(private firestore: Firestore,
-    private productService: ProductService) { }
+  constructor(private productService: ProductService) { }
 
   async ngOnInit() {
     this.products = [];
@@ -25,11 +22,5 @@ export class ProductsComponent implements OnInit {
         this.products= [...products]
     })
   }
-
-  // ngOnDestroy() {
-  //   if (this.subscription) {
-  //     this.subscription.unsubscribe();
-  //   }
-  // }
 
 }

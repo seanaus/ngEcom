@@ -30,6 +30,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     //   this.userId = user?.uid
     // });
     const routeParams = this.route.snapshot.paramMap;
+    // this.Id = routeParams.get('id') !== null ? routeParams.get('id') : "-1";
     const pId = routeParams.get('id');
     this.Id = (pId !== null) ? pId : "-1";
     this.getProduct(this.Id);
