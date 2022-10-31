@@ -1,0 +1,72 @@
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pannel {
+    margin: 30px;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 350px;
+    box-shadow: 5px 5px 8px rgba(136, 136, 136, 0.4);
+    border: 1px solid rgba(136, 136, 136, 0.4);
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.textBoxContainer {
+    display: flex;
+    padding: 0px 5px;
+}
+
+.heading {
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    padding: 8px 0px 8px 0px;
+    border: 1px solid rgba(136, 136, 136, 0.4);
+    box-shadow: 5px 5px 8px rgba(136, 136, 136, 0.4);
+
+}
+// label {
+//     display: block;
+//     margin: 10px 0 0 0;
+// }
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--themeNotVisible);
+}
+input:focus {
+    border-bottom: 1px solid var(--themeBgColorPrimary);
+}
+.button-bar {
+    display: flex;
+    justify-content: space-between;
+}
+.button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: 80px;
+    cursor: pointer;
+    margin: 10px;
+    border: 1px solid rgba(136, 136, 136, 0.4);
+}
+.button-navigation {
+    text-align: center;
+    font-weight: bold;
+    color: var(--themeBgFColorPrimary);
+    background-color: var(--themeBgColorPrimary);
+}
+.button:hover {
+    opacity: 0.8;
+}

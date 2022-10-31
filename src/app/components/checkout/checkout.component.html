@@ -1,1 +1,81 @@
-<p>checkout works!</p>
+<div class="row">
+    <div id="addressDetails" class="pannel" *ngIf="deliveryDetails">
+        <div class="heading">ENTER DELIVERY DETAILS</div>
+        <div class="textBoxContainer">
+                <input matInput type="text" 
+                        placeholder="Forename(s)" 
+                        id="forename" [(ngModel)]="forename">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                        placeholder="Surname" 
+                        id="surname" [(ngModel)]="surname">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="Address" 
+                            id="address" [(ngModel)]="address">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="Town" 
+                            id="town" [(ngModel)]="town">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="City" 
+                            id="city" [(ngModel)]="city">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="County" 
+                            id="county" [(ngModel)]="county">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="Postcode" 
+                            id="postcode" [(ngModel)]="postcode">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="text"
+                            placeholder="Telephone" 
+                            id="telephone" [(ngModel)]="telephone">
+        </div>
+        <div class="textBoxContainer">
+                <input matInput type="email"
+                            placeholder="Email"
+                            id="email" [(ngModel)]="email">
+        </div>
+        <div claSS="button-bar">
+            <div class="button button-navigation" (click)="cancelPayment()">CANCEL</div>
+            <div class="button button-navigation" (click)="paymentView()">NEXT</div>
+        </div>
+    </div>
+    <div id="paymentDetails" class="pannel" *ngIf="paymentDetails">
+        <div class="heading">ENTER PAYMENT DETAILS</div>
+        <div class="textBoxContainer">
+            <input matInput type="text"
+                            placeholder="Name On Card"
+                            id="nameOnCard" [(ngModel)]="nameOnCard">
+        </div>
+        <div class="textBoxContainer">
+            <input matInput type="text"
+                            placeholder="Card No"
+                            id="cardNo" [(ngModel)]="cardNo">
+        </div>
+        <div class="textBoxContainer">
+            <input matInput type="date"
+                            placeholder="Expiry Date"
+                            id="expiryDate" [(ngModel)]="expiryDate">
+        </div>
+        <div class="textBoxContainer">
+            <input matInput type="text"
+                            placeholder="CSV"
+                            id="csv" [(ngModel)]="csv">
+        </div>
+        <div claSS="button-bar">
+            <div class="button button-navigation" (click)="deliveryView()">BACK</div>
+            <div class="button button-navigation" (click)="pay()">PAY</div>
+        </div>
+    </div>
+</div>

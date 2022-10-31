@@ -1,51 +1,39 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/models/product';
-import { AuthService } from 'src/services/auth.service';
 import { CartService } from 'src/services/cart.service';
 import { ProductService } from 'src/services/product.service';
-import { CookieService } from 'src/services/cookie.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit, OnDestroy {
+export class ProductDetailsComponent implements OnInit {
   product: any;
   gallery: any;
   subscription: any
   userId: string | undefined ;
-  Id: string ="";
+  Id: string = "";
 
-  constructor(private authService: AuthService,
-              private productService: ProductService,
-              private cookieService: CookieService,
+  constructor(private productService: ProductService,
               private cartService: CartService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    // this.subscription = this.authService.user.subscribe(user => {
-    //   this.userId = user?.uid
-    // });
-    const routeParams = this.route.snapshot.paramMap;
-    // this.Id = routeParams.get('id') !== null ? routeParams.get('id') : "-1";
-    const pId = routeParams.get('id');
-    this.Id = (pId !== null) ? pId : "-1";
-    this.getProduct(this.Id);
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id !== null) {
+      await this.getProduct(id);
+    }
   }
+
   async getProduct(id: string) {
     const product$ = await this.productService.getProduct(id)
     product$.subscribe((product) => {
       this.product = product
-      // console.log(product)
     })
-  }
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   refreshImage(event: any) {

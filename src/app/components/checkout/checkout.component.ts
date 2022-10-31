@@ -8,25 +8,72 @@ import { CartService } from 'src/services/cart.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-  cartId: string = "";
   cart: any;
+
+  forename = "";
+  surname = "";
+  address = "";
+  town = "";
+  city = "";
+  county = "";
+  postcode = "";
+  telephone = "";
+  email = "";
+  nameOnCard = "";
+  cardNo = "";
+  expiryDate = "";
+  csv = "";
+
+  deliveryDetails = true;
+  paymentDetails = false;
+  message = "";
 
   constructor(private cartService: CartService,
     private router: Router,
     private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    const routeParams = this.route.snapshot.paramMap;
-    // const id = routeParams.get('id') !== null ? routeParams.get('id') : "-1" ;
-    const cId = routeParams.get('id');
-    this.cartId = (cId !== null) ? cId : "-1";
-    this.cart = await this.cartService.getCart(this.cartId);
-    this.log(this.cartId)
+    const id = this.route.snapshot.paramMap.get('id');
+      
+    if (id !== null) {
+      const cart$ = await this.cartService.getCart(id)
+      cart$.subscribe((cart) => {
+        this.cart = cart
+      })
+    }
   }
-
-  log(id: string) {
-    console.log(`CART_ID: ${id}`);
+  cancelPayment() {
+    this.router.navigateByUrl("/cart");
+  }
+  pay() {
+    console.log(`CART_ID: ${this.cart.id}`);
     console.log(this.cart);
   }
+  deliveryView() {
+    this.deliveryDetails = true;
+    this.paymentDetails = false;
+    this.resetPaymentDetails();
+  }
+  paymentView() {
+    this.paymentDetails = true;
+    this.deliveryDetails = false;
+  }
 
+  resetPaymentDetails() {
+    this.nameOnCard = "";
+    this.cardNo = "";
+    this.expiryDate = "";
+    this.csv = "";
+  }
+
+  validateForm(): boolean { 
+    this.logMessage("");
+    let isValid = true;
+
+    return isValid;
+
+  }
+  logMessage(message: string) {
+    this.message = message;
+  }
 }
