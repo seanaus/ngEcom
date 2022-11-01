@@ -1,81 +1,51 @@
 <div class="row">
-    <div id="addressDetails" class="pannel" *ngIf="deliveryDetails">
-        <div class="heading">ENTER DELIVERY DETAILS</div>
-        <div class="textBoxContainer">
-                <input matInput type="text" 
-                        placeholder="Forename(s)" 
-                        id="forename" [(ngModel)]="forename">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                        placeholder="Surname" 
-                        id="surname" [(ngModel)]="surname">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="Address" 
-                            id="address" [(ngModel)]="address">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="Town" 
-                            id="town" [(ngModel)]="town">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="City" 
-                            id="city" [(ngModel)]="city">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="County" 
-                            id="county" [(ngModel)]="county">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="Postcode" 
-                            id="postcode" [(ngModel)]="postcode">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="text"
-                            placeholder="Telephone" 
-                            id="telephone" [(ngModel)]="telephone">
-        </div>
-        <div class="textBoxContainer">
-                <input matInput type="email"
-                            placeholder="Email"
-                            id="email" [(ngModel)]="email">
-        </div>
-        <div claSS="button-bar">
-            <div class="button button-navigation" (click)="cancelPayment()">CANCEL</div>
-            <div class="button button-navigation" (click)="paymentView()">NEXT</div>
-        </div>
+  <form [formGroup]="checkoutForm" class="pannel" (ngSubmit) = "onSubmit()">
+    <h3>Address Details</h3>
+    <label>
+      First Name:
+      <input type="text" formControlName="forename">
+    </label>
+    <label>
+      Last Name:
+      <input type="text" formControlName="surname">
+    </label>
+    <div formGroupName="address">
+      <label>
+        Address Line 1:
+        <input type="text" formControlName="address1">
+      </label>
+      <label>
+        Address Line 2:
+        <input type="text" formControlName="address2">
+      </label>
+      <label>
+        Town:
+        <input type="text" formControlName="town">
+      </label>
+      <label>
+        City:
+        <input type="text" formControlName="city">
+      </label>
+      <label>
+        County:
+        <input type="text" formControlName="county">
+      </label>
+      <label>
+        Postcode:
+        <input type="text" formControlName="postcode">
+      </label>
+      <label>
+        Telephone:
+        <input type="text" formControlName="telephone">
+      </label>
+      <label>
+        Email:
+        <input type="text" formControlName="email">
+      </label>
     </div>
-    <div id="paymentDetails" class="pannel" *ngIf="paymentDetails">
-        <div class="heading">ENTER PAYMENT DETAILS</div>
-        <div class="textBoxContainer">
-            <input matInput type="text"
-                            placeholder="Name On Card"
-                            id="nameOnCard" [(ngModel)]="nameOnCard">
-        </div>
-        <div class="textBoxContainer">
-            <input matInput type="text"
-                            placeholder="Card No"
-                            id="cardNo" [(ngModel)]="cardNo">
-        </div>
-        <div class="textBoxContainer">
-            <input matInput type="date"
-                            placeholder="Expiry Date"
-                            id="expiryDate" [(ngModel)]="expiryDate">
-        </div>
-        <div class="textBoxContainer">
-            <input matInput type="text"
-                            placeholder="CSV"
-                            id="csv" [(ngModel)]="csv">
-        </div>
-        <div claSS="button-bar">
-            <div class="button button-navigation" (click)="deliveryView()">BACK</div>
-            <div class="button button-navigation" (click)="pay()">PAY</div>
-        </div>
+    <div class="btnBar">
+      <button  (click)="onCancel()">BACK</button>
+      <button type="submit" [disabled]="!checkoutForm.valid">NEXT</button>
     </div>
+  </form>
 </div>

@@ -1,79 +1,92 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/services/cart.service';
+import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
+
+export interface KeyValueField {
+  key: string,
+  value: string,
+}
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
+
 export class CheckoutComponent implements OnInit {
+  cartId = "";
   cart: any;
-
-  forename = "";
-  surname = "";
-  address = "";
-  town = "";
-  city = "";
-  county = "";
-  postcode = "";
-  telephone = "";
-  email = "";
-  nameOnCard = "";
-  cardNo = "";
-  expiryDate = "";
-  csv = "";
-
-  deliveryDetails = true;
-  paymentDetails = false;
-  message = "";
+  forename: any;
+  surname: any;
+  address1: any;
+  address2 : any;
+  town: any;
+  city : any;
+  county: any;
+  postcode: any;
+  telephone: any;
+  email: any;
 
   constructor(private cartService: CartService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private fb: FormBuilder) { }
 
-  async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-      
-    if (id !== null) {
-      const cart$ = await this.cartService.getCart(id)
-      cart$.subscribe((cart) => {
-        this.cart = cart
+    checkoutForm = this.fb.group({
+      forename: ['', Validators.required],
+      surname: ['', Validators.required],
+      address: this.fb.group({
+        address1: ['', Validators.required],
+        address2: [''],
+        town: ['', Validators.required],
+        city: ['', Validators.required],
+        county: ['', Validators.required],
+        postcode: ['', Validators.required],
+        telephone: ['', Validators.required],
+        email: ['', Validators.required]
       })
+    });
+
+    async ngOnInit() {
+      this.cartId  = this.route.snapshot.paramMap.get('id') ?? "";
+      if (this.cartId  !== "") {
+        const cart$ = await this.cartService.getCart(this.cartId)
+        cart$.subscribe((cart) => {
+          this.cart = cart
+        })
+      }
     }
-  }
-  cancelPayment() {
-    this.router.navigateByUrl("/cart");
-  }
-  pay() {
-    console.log(`CART_ID: ${this.cart.id}`);
-    console.log(this.cart);
-  }
-  deliveryView() {
-    this.deliveryDetails = true;
-    this.paymentDetails = false;
-    this.resetPaymentDetails();
-  }
-  paymentView() {
-    this.paymentDetails = true;
-    this.deliveryDetails = false;
-  }
+    onCancel() {
+      this.router.navigateByUrl("/cart");
+    }
+    onSubmit() {
+      const submission = this.checkoutForm.getRawValue();
+      this.forename = submission?.forename ?? '';
+      this.surname = submission?.surname ?? '';
+      this.address1 = submission?.address?.address1 ?? '';
+      this.address2 = submission?.address?.address2 ?? '';
+      this.town = submission?.address?.town ?? '';
+      this.city = submission?.address?.city ?? '';
+      this.county = submission?.address?.county ?? '';
+      this.postcode = submission?.address?.postcode ?? '';
+      this.telephone = submission?.address?.telephone ?? '';
+      this.email = submission?.address?.email ?? '';
+      this.logInfo();
+      this.router.navigateByUrl(`/cart/checkout/payment/${ this.cartId}`);
+    }
 
-  resetPaymentDetails() {
-    this.nameOnCard = "";
-    this.cardNo = "";
-    this.expiryDate = "";
-    this.csv = "";
-  }
-
-  validateForm(): boolean { 
-    this.logMessage("");
-    let isValid = true;
-
-    return isValid;
-
-  }
-  logMessage(message: string) {
-    this.message = message;
-  }
+    logInfo() {
+      console.log(`Forename: ${ this.forename }`);
+      console.log(`Surname: ${ this.surname }`);
+      console.log(`Address1: ${ this.address1 }`);
+      console.log(`Address2: ${ this.address2 }`);
+      console.log(`Town: ${ this.town }`);
+      console.log(`City: ${ this.city }`);
+      console.log(`County: ${ this.county }`);
+      console.log(`Postcode: ${ this.postcode }`);
+      console.log(`Telephone: ${ this.telephone }`);
+      console.log(`Email: ${ this.email }`);
+    }
 }

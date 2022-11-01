@@ -41,7 +41,7 @@ export class CartService {
       this.cookieService.setCookie("cartId", this.cartId, 30);
     }
     // GET CART FROM FIRESTORE
-    const cart$= await this.getCart(this.cartId)
+    const cart$ = await this.getCart(this.cartId)
     cart$.subscribe((cart) => {
       this.cart = cart;
     })
