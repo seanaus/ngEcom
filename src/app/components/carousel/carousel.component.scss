@@ -1,4 +1,8 @@
+:host {
+  position: relative;
+}
 .carousel {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -7,7 +11,8 @@
 }
 
 .slide {
-  height: 300px;
+  height: 400px;
+  overflow: hidden;
   //width: 100vw;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,10 +26,15 @@
 }
 
 .controlContainer {
+  position: absolute;
+  bottom: 0;
+z-index: 1;
+left: 0;
+right: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: -35px auto 0 auto;
+  margin: 0 auto;
 }
 
 .btn {

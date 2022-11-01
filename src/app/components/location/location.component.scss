@@ -1,3 +1,6 @@
+:host {
+  min-height: calc(100vh - 90px);
+}
 .mapsWrapper {
   display: flex;
   flex-direction: column;
