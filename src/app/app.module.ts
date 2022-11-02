@@ -27,7 +27,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
 import { ItemCardPannelComponent } from './components/item-card-pannel/item-card-pannel.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { PayComponent } from './components/pay/pay.component'
+import { PaymentComponent } from './components/payment/payment.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { PayComponent } from './components/pay/pay.component'
     ItemCardComponent,
     ItemCardPannelComponent,
     CheckoutComponent,
-    PayComponent
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

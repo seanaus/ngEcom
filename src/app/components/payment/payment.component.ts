@@ -5,11 +5,11 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-pay',
-  templateUrl: './pay.component.html',
-  styleUrls: ['./pay.component.scss']
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss']
 })
-export class PayComponent implements OnInit {
+export class PaymentComponent implements OnInit {
   cartId = "";
   cart: any;
   nameOnCard : any;

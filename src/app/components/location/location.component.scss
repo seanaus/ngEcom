@@ -1,15 +1,10 @@
 :host {
-  min-height: calc(100vh - 90px);
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.mapsWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-    // margin: auto;
-}
-
 .mapsHeader {
     font-size: xx-large;
     margin-bottom: 10px;

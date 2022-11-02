@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/services/cart.service';
 import { SettingsService } from 'src/services/settings.service';
 
@@ -11,7 +12,8 @@ export class CartTotalsComponent implements OnInit {
   @Input() cartId: string = "";
   @Input() vatMetric: any;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +32,9 @@ export class CartTotalsComponent implements OnInit {
   }
   getTotalIncVat() {
     return +this.getTotalCost() + +this.getVat();
+  }
+  checkout() {
+    this.router.navigateByUrl(`/cart/checkout/${this.cartId}`);
   }
 
 }

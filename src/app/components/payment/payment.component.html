@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="payForm" class="pannel" (ngSubmit) = "onSubmit()">
+    <h3>Payment</h3>
+    <label>
+      Name On Card:
+      <input type="text" formControlName="nameOnCard">
+    </label>
+    <label>
+      Card No:
+      <input type="text" formControlName="cardNo">
+    </label>
+    <div class="row">
+      <div  class="colSpan50">
+        <label>
+          Expiry Date:
+          <input type="date" formControlName="expiryDate">
+        </label>     
+      </div>
+      <div class="colSpan50">
+        <label>
+          CSV:
+          <input type="text" formControlName="csv" class="pushRight">
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="colSpan50">
+        <button (click)="onCancel()">BACK</button>
+      </div>
+      <div class="colSpan50 pushRight">
+        <button type="submit" [disabled]="!payForm.valid">PAY</button>
+      </div>
+    </div>
+  </form>
+</div>
+
