@@ -16,12 +16,23 @@ export class CartService {
 
   userId: string | null = null;
   cartId: string | null = null;
-  // items: CartItem[] = [];
-  // totalCount = 0;
-  // totalCost = 0;
+  forename: any;
+  surname: any;
+  address1: any;
+  address2: any;
+  town: any;
+  city: any;
+  county: any;
+  postcode: any;
+  telephone: any;
+  email: any;
+  nameOnCard: any;
+  cardNo: any;
+  expiryDate: any;
+  csv: any;
   created = new Date();
+  processed: any;
   cart: any
-  // quantity_counter = 0;
 
   constructor(private db: Firestore,
     private cookieService: CookieService,
@@ -47,14 +58,33 @@ export class CartService {
     })
     return Promise.resolve(true)
   }
+  clearCart() {
+    this.cart = {};
+    this.cartId = "";
+  }
   async createCart() {
     const colRef = collection(this.db, "cart")
     return await addDoc(colRef, {
       userId: this.userId,
-      items: this.cart.items as Array<any>,
+      forename: "",
+      surname: "",
+      address1: "",
+      address2: "",
+      town: "",
+      city: "",
+      county: "",
+      postcode: "",
+      telephone: "",
+      email: "",
+      nameOnCard: "",
+      cardNo: "",
+      expiryDate: "",
+      csv: "",
+      processed: "",
+      items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.datepipe.transform(this.created, 'dd-MM-yyyy')
+      created: this.datepipe.transform(this?.created, 'dd-MM-yyyy')
         + ":" + this.created.getHours()
         + ":" + this.created.getMinutes()
         + ":" + this.created.getSeconds()
@@ -118,7 +148,17 @@ export class CartService {
       merge: true
     })
   }
-
+  async mergeDelivery(delInfo: any) {
+    this.calculateTotals()
+    const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
+    return setDoc(docRef, {
+      items: this.cart.items,
+      totalCount: this.cart.totalCount,
+      totalCost: this.cart.totalCost
+    }, {
+      merge: true
+    })
+  }
   logCart() {
     console.log("SHOPPING CART")
     console.log(JSON.stringify(this.cart))

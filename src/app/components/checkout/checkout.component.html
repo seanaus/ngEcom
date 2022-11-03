@@ -1,47 +1,67 @@
 <div class="row">
   <form [formGroup]="checkoutForm" class="pannel" (ngSubmit) = "onSubmit()">
     <h3>Address Details</h3>
-    <label>
-      First Name:
-      <input type="text" formControlName="forename">
-    </label>
-    <label>
-      Last Name:
-      <input type="text" formControlName="surname">
-    </label>
+    <!-- <label>
+      First Name: -->
+      <input type="text" 
+        formControlName="forename" 
+        placeholder="FORENAME">
+    <!-- </label> -->
+    <!-- <label>
+      Last Name: -->
+      <input type="text" 
+        formControlName="surname" 
+        placeholder="SURNAME">
+    <!-- </label> -->
     <div formGroupName="address">
+      <!-- <label>
+        Address Line 1: -->
+        <input type="text" 
+          formControlName="address1" 
+          placeholder="ADDRESS1">
+      <!-- </label> -->
+      <!-- <label>
+        Address Line 2: -->
+        <input type="text" 
+          formControlName="address2" 
+          placeholder="ADDRESS2">
+      <!-- </label> -->
+      <!-- <label>
+        Town: -->
+        <input type="text" 
+          formControlName="town" 
+          placeholder="TOWN">
+      <!-- </label> -->
+      <!-- <label>
+        City: -->
+        <input type="text" 
+          formControlName="city" 
+          placeholder="CITY">
+      <!-- </label>
       <label>
-        Address Line 1:
-        <input type="text" formControlName="address1">
-      </label>
+        County: -->
+        <input type="text" 
+          formControlName="county" 
+          placeholder="COUNTY">
+      <!-- </label> -->
+      <!-- <label>
+        Postcode: -->
+        <input type="text" 
+          formControlName="postcode" 
+          placeholder="POSTCODE">
+      <!-- </label>
       <label>
-        Address Line 2:
-        <input type="text" formControlName="address2">
-      </label>
+        Telephone: -->
+        <input type="text" 
+          formControlName="telephone" 
+          placeholder="TELEPHONE">
+      <!-- </label>
       <label>
-        Town:
-        <input type="text" formControlName="town">
-      </label>
-      <label>
-        City:
-        <input type="text" formControlName="city">
-      </label>
-      <label>
-        County:
-        <input type="text" formControlName="county">
-      </label>
-      <label>
-        Postcode:
-        <input type="text" formControlName="postcode">
-      </label>
-      <label>
-        Telephone:
-        <input type="text" formControlName="telephone">
-      </label>
-      <label>
-        Email:
-        <input type="text" formControlName="email">
-      </label>
+        Email: -->
+        <input type="text" 
+          formControlName="email" 
+          placeholder="EMAIL">
+      <!-- </label> -->
     </div>
     <div class="btnBar">
       <button  (click)="onCancel()">BACK</button>

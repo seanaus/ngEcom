@@ -3,12 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/services/cart.service';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
-
-export interface KeyValueField {
-  key: string,
-  value: string,
+export interface IField {
+  name: string;
+  value: string;
 }
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -28,6 +26,8 @@ export class CheckoutComponent implements OnInit {
   postcode: any;
   telephone: any;
   email: any;
+
+  fieldList: IField[] = [];
 
   constructor(private cartService: CartService,
     private router: Router,
@@ -63,17 +63,20 @@ export class CheckoutComponent implements OnInit {
     }
     onSubmit() {
       const submission = this.checkoutForm.getRawValue();
-      this.forename = submission?.forename ?? '';
-      this.surname = submission?.surname ?? '';
-      this.address1 = submission?.address?.address1 ?? '';
-      this.address2 = submission?.address?.address2 ?? '';
-      this.town = submission?.address?.town ?? '';
-      this.city = submission?.address?.city ?? '';
-      this.county = submission?.address?.county ?? '';
-      this.postcode = submission?.address?.postcode ?? '';
-      this.telephone = submission?.address?.telephone ?? '';
-      this.email = submission?.address?.email ?? '';
-      this.logInfo();
+      console.log(submission);
+
+      this.fieldList = [...this.fieldList, { name: "", value: ""}]
+      // this.forename = submission?.forename ?? '';
+      // this.surname = submission?.surname ?? '';
+      // this.address1 = submission?.address?.address1 ?? '';
+      // this.address2 = submission?.address?.address2 ?? '';
+      // this.town = submission?.address?.town ?? '';
+      // this.city = submission?.address?.city ?? '';
+      // this.county = submission?.address?.county ?? '';
+      // this.postcode = submission?.address?.postcode ?? '';
+      // this.telephone = submission?.address?.telephone ?? '';
+      // this.email = submission?.address?.email ?? '';
+      // this.logInfo();
       this.router.navigateByUrl(`/cart/checkout/payment/${ this.cartId}`);
     }
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { CookieService } from 'src/services/cookie.service';
 
 @Component({
   selector: 'app-payment',
@@ -27,6 +28,7 @@ export class PaymentComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private cartService: CartService,
+    private cookieService: CookieService,
     private fb: FormBuilder) { }
 
   async ngOnInit() {
@@ -48,12 +50,18 @@ export class PaymentComponent implements OnInit {
     this.expiryDate = submission?.expiryDate ?? '';
     this.csv = submission?.csv ?? '';
     this.logInfo();
+    this.archiveCart();
   }
   logInfo() {
     console.log(`NameOnCard: ${ this.nameOnCard }`);
     console.log(`CardNo: ${ this.cardNo }`);
     console.log(`EXPIRY: ${ this.expiryDate }`);
     console.log(`CSV: ${ this.csv }`);
+  }
+  archiveCart() {
+    this.cookieService.expireCookie("cartId", this.cartId)
+    this.cartService.clearCart();
+    this.router.navigateByUrl(`/cart`);
   }
 
 }

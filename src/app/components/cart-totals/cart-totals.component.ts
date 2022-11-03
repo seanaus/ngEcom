@@ -22,7 +22,8 @@ export class CartTotalsComponent implements OnInit {
     return this.vatMetric * 100
   }
   getTotalCount() {
-    return (this.cartService.cart !== undefined)? +this.cartService.cart.totalCount: 0
+    return (this.cartService?.cart !== undefined) ? +this.cartService.cart.totalCount : 0
+    // return +this.cartService.cart?.totalCount ?? 0
   }
   getTotalCost() {
     return (this.cartService.cart !== undefined)? +this.cartService.cart.totalCost: 0

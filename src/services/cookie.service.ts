@@ -26,4 +26,7 @@ export class CookieService {
     }
     return null;
   }
+  expireCookie(key: string, value: string) {
+    this.setCookie(key, value, -1);
+  }
 }
