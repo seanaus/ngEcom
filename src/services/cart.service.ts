@@ -16,22 +16,22 @@ export class CartService {
 
   userId: string | null = null;
   cartId: string | null = null;
-  forename: any;
-  surname: any;
-  address1: any;
-  address2: any;
-  town: any;
-  city: any;
-  county: any;
-  postcode: any;
-  telephone: any;
-  email: any;
-  nameOnCard: any;
-  cardNo: any;
-  expiryDate: any;
-  csv: any;
+  // forename: any;
+  // surname: any;
+  // address1: any;
+  // address2: any;
+  // town: any;
+  // city: any;
+  // county: any;
+  // postcode: any;
+  // telephone: any;
+  // email: any;
+  // nameOnCard: any;
+  // cardNo: any;
+  // expiryDate: any;
+  // csv: any;
   created = new Date();
-  processed: any;
+
   cart: any
 
   constructor(private db: Firestore,
@@ -66,21 +66,21 @@ export class CartService {
     const colRef = collection(this.db, "cart")
     return await addDoc(colRef, {
       userId: this.userId,
-      forename: "",
-      surname: "",
-      address1: "",
-      address2: "",
-      town: "",
-      city: "",
-      county: "",
-      postcode: "",
-      telephone: "",
-      email: "",
-      nameOnCard: "",
-      cardNo: "",
-      expiryDate: "",
-      csv: "",
-      processed: "",
+      // forename: "",
+      // surname: "",
+      // address1: "",
+      // address2: "",
+      // town: "",
+      // city: "",
+      // county: "",
+      // postcode: "",
+      // telephone: "",
+      // email: "",
+      // nameOnCard: "",
+      // cardNo: "",
+      // expiryDate: "",
+      // csv: "",
+      // processed: "",
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
@@ -148,16 +148,18 @@ export class CartService {
       merge: true
     })
   }
-  async mergeDelivery(delInfo: any) {
-    this.calculateTotals()
+  async checkout(data: any) {
+    const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
+    return setDoc(docRef, data, { merge: true })
+  }
+  async complete() {
+    const now = new Date();
     const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
     return setDoc(docRef, {
-      items: this.cart.items,
-      totalCount: this.cart.totalCount,
-      totalCost: this.cart.totalCost
-    }, {
-      merge: true
-    })
+      complete: true,
+      completed: now
+    },
+    { merge: true })
   }
   logCart() {
     console.log("SHOPPING CART")

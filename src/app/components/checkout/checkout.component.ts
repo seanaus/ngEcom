@@ -61,9 +61,9 @@ export class CheckoutComponent implements OnInit {
     onCancel() {
       this.router.navigateByUrl("/cart");
     }
-    onSubmit() {
+    async onSubmit() {
       const submission = this.checkoutForm.getRawValue();
-      console.log(submission);
+      // console.log(submission);
 
       this.fieldList = [...this.fieldList, { name: "", value: ""}]
       // this.forename = submission?.forename ?? '';
@@ -77,8 +77,20 @@ export class CheckoutComponent implements OnInit {
       // this.telephone = submission?.address?.telephone ?? '';
       // this.email = submission?.address?.email ?? '';
       // this.logInfo();
+      // this.printForm(submission);
+      await this.cartService.checkout(submission);
       this.router.navigateByUrl(`/cart/checkout/payment/${ this.cartId}`);
     }
+
+    printForm(obj: any) {
+      console.log("printForm");
+      Object.entries(obj).forEach(([key, value], index) => {
+        // 👇️👇️👇️👇️ name Tom 0, country Chile 1
+        console.log(key, value, index);
+      });
+
+    }
+
 
     logInfo() {
       console.log(`Forename: ${ this.forename }`);
