@@ -1,11 +1,8 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { addDoc, collection, collectionData, doc, docSnapshots, Firestore, setDoc, increment } from '@angular/fire/firestore';
-// import { Cart } from 'src/models/cart';
-import { CartItem } from 'src/models/cartItem';
 import { Product } from 'src/models/product'
-// import { AuthService } from './auth.service';
 import { CookieService } from './cookie.service';
-import { DatePipe } from '@angular/common'
+import { DateService } from './date.service';
 import { map } from 'rxjs';
 
 const aggregate = (total: number, value: any) => { return total + value }
@@ -36,7 +33,7 @@ export class CartService {
 
   constructor(private db: Firestore,
     private cookieService: CookieService,
-    private datepipe: DatePipe) {
+    private dateService: DateService) {
     this.init();
   }
 
@@ -84,13 +81,10 @@ export class CartService {
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.datepipe.transform(this?.created, 'dd-MM-yyyy')
-        + ":" + this.created.getHours()
-        + ":" + this.created.getMinutes()
-        + ":" + this.created.getSeconds()
+      created: this.dateService.formatDate(this.dateService.getDateTime().toString())
     });
   }
-  async getCart(cartId:string) {
+  async getCart(cartId: string) {
     const docRef = doc(this.db, 'cart', cartId);
     return docSnapshots(docRef).pipe(map(data => ({...data.data(), cartId})));
   }

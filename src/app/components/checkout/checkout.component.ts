@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
       const submission = this.checkoutForm.getRawValue();
       // console.log(submission);
 
-      this.fieldList = [...this.fieldList, { name: "", value: ""}]
+      //this.fieldList = [...this.fieldList, { name: "", value: ""}]
       // this.forename = submission?.forename ?? '';
       // this.surname = submission?.surname ?? '';
       // this.address1 = submission?.address?.address1 ?? '';
