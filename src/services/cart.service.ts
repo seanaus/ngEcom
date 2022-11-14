@@ -81,7 +81,7 @@ export class CartService {
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.dateService.formatDate(this.dateService.getDateTime().toString())
+      created: this.dateService.getDateTime({ day: 27, month: 10, year: 1972, hour: 14, minute: 15, second: 15, milliSecond: 194 }, "dd-mm-yyyy - hh:mm:ss:ms")
     });
   }
   async getCart(cartId: string) {
