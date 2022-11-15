@@ -16,18 +16,18 @@ export interface IField {
 export class CheckoutComponent implements OnInit {
   cartId = "";
   cart: any;
-  forename: any;
-  surname: any;
-  address1: any;
-  address2 : any;
-  town: any;
-  city : any;
-  county: any;
-  postcode: any;
-  telephone: any;
-  email: any;
+  // forename: any;
+  // surname: any;
+  // address1: any;
+  // address2 : any;
+  // town: any;
+  // city : any;
+  // county: any;
+  // postcode: any;
+  // telephone: any;
+  // email: any;
 
-  fieldList: IField[] = [];
+  // fieldList: IField[] = [];
 
   constructor(private cartService: CartService,
     private router: Router,
@@ -35,9 +35,9 @@ export class CheckoutComponent implements OnInit {
     private fb: FormBuilder) { }
 
     checkoutForm = this.fb.group({
-      forename: ['', Validators.required],
-      surname: ['', Validators.required],
-      address: this.fb.group({
+      delivery: this.fb.group({
+        forename: ['', Validators.required],
+        surname: ['', Validators.required],
         address1: ['', Validators.required],
         address2: [''],
         town: ['', Validators.required],
@@ -82,26 +82,26 @@ export class CheckoutComponent implements OnInit {
       this.router.navigateByUrl(`/cart/checkout/payment/${ this.cartId}`);
     }
 
-    printForm(obj: any) {
-      console.log("printForm");
-      Object.entries(obj).forEach(([key, value], index) => {
-        // 👇️👇️👇️👇️ name Tom 0, country Chile 1
-        console.log(key, value, index);
-      });
+    // printForm(obj: any) {
+    //   console.log("printForm");
+    //   Object.entries(obj).forEach(([key, value], index) => {
+    //     // 👇️👇️👇️👇️ name Tom 0, country Chile 1
+    //     console.log(key, value, index);
+    //   });
 
-    }
+    // }
 
 
-    logInfo() {
-      console.log(`Forename: ${ this.forename }`);
-      console.log(`Surname: ${ this.surname }`);
-      console.log(`Address1: ${ this.address1 }`);
-      console.log(`Address2: ${ this.address2 }`);
-      console.log(`Town: ${ this.town }`);
-      console.log(`City: ${ this.city }`);
-      console.log(`County: ${ this.county }`);
-      console.log(`Postcode: ${ this.postcode }`);
-      console.log(`Telephone: ${ this.telephone }`);
-      console.log(`Email: ${ this.email }`);
-    }
+    // logInfo() {
+    //   console.log(`Forename: ${ this.forename }`);
+    //   console.log(`Surname: ${ this.surname }`);
+    //   console.log(`Address1: ${ this.address1 }`);
+    //   console.log(`Address2: ${ this.address2 }`);
+    //   console.log(`Town: ${ this.town }`);
+    //   console.log(`City: ${ this.city }`);
+    //   console.log(`County: ${ this.county }`);
+    //   console.log(`Postcode: ${ this.postcode }`);
+    //   console.log(`Telephone: ${ this.telephone }`);
+    //   console.log(`Email: ${ this.email }`);
+    // }
 }

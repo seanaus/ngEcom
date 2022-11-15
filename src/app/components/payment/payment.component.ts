@@ -18,22 +18,6 @@ export class PaymentComponent implements OnInit {
   // expiryDate: any;
   // csv : any;
 
-  // payForm = this.fb.group({
-  //   payment: this.fb.group({
-  //     nameOnCard: ['', Validators.required],
-  //     cardNo: ['', Validators.required],
-  //     expiryDate: ['', Validators.required],
-  //     csv: ['', Validators.required]
-  //   })
-  // });
-
-  // payForm = this.fb.group({
-  //   nameOnCard: ['', Validators.required],
-  //   cardNo: ['', Validators.required],
-  //   expiryDate: ['', Validators.required],
-  //   csv: ['', Validators.required]
-  // });
-
   payForm = this.fb.group({
     payment: this.fb.group({
       nameOnCard: ['', Validators.required],
