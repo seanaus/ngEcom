@@ -27,11 +27,20 @@ export class PaymentComponent implements OnInit {
   //   })
   // });
 
+  // payForm = this.fb.group({
+  //   nameOnCard: ['', Validators.required],
+  //   cardNo: ['', Validators.required],
+  //   expiryDate: ['', Validators.required],
+  //   csv: ['', Validators.required]
+  // });
+
   payForm = this.fb.group({
-    nameOnCard: ['', Validators.required],
-    cardNo: ['', Validators.required],
-    expiryDate: ['', Validators.required],
-    csv: ['', Validators.required]
+    payment: this.fb.group({
+      nameOnCard: ['', Validators.required],
+      cardNo: ['', Validators.required],
+      expiryDate: ['', Validators.required],
+      csv: ['', Validators.required]
+    })
   });
 
   constructor(private router: Router,
@@ -73,7 +82,7 @@ export class PaymentComponent implements OnInit {
   archiveCart() {
     this.cookieService.expireCookie("cartId", this.cartId)
     this.cartService.clearCart();
-    this.router.navigateByUrl(`/cart`);
+    this.router.navigateByUrl(`/home`);
   }
 
 }

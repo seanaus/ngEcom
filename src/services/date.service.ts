@@ -29,7 +29,7 @@ export class DateService {
   format(date: Date, formatString: string = "dd/mm/yyyy hh:mm:ss:ms") {
 
     formatString = formatString.replace('dd', this.padLeft(date.getDate().toString(), "0", 2));
-    formatString = formatString.replace('mm', this.padLeft(date.getMonth().toString(), "0", 2));
+    formatString = formatString.replace('mm', this.padLeft((date.getMonth() + 1).toString(), "0", 2));
     formatString = formatString.replace('yyyy', date.getFullYear().toString());
     formatString = formatString.replace('hh', this.padLeft(date.getHours().toString(), "0", 2));
     formatString = formatString.replace('mm', this.padLeft(date.getMinutes().toString(), "0", 2));
@@ -45,7 +45,7 @@ export class DateService {
   }
   pad(char: string, len: number) {
     let pads: string[] = [];
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < len-1; i++) {
       pads = [...pads, char];
     }
     return pads.join('');

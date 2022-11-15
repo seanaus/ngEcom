@@ -50,7 +50,7 @@ export class CartService {
     }
     // GET CART FROM FIRESTORE
     const cart$ = await this.getCart(this.cartId)
-    cart$.subscribe((cart) => {
+    cart$.subscribe((cart: any) => {
       this.cart = cart;
     })
     return Promise.resolve(true)
@@ -81,7 +81,7 @@ export class CartService {
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.dateService.getDateTime({ day: 27, month: 10, year: 1972, hour: 14, minute: 15, second: 15, milliSecond: 194 }, "dd-mm-yyyy - hh:mm:ss:ms")
+      created: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss:ms")
     });
   }
   async getCart(cartId: string) {
@@ -147,7 +147,7 @@ export class CartService {
     return setDoc(docRef, data, { merge: true })
   }
   async complete() {
-    const now = new Date();
+    const now = this.dateService.getDateTime({},"dd/mm/yyyy hh:mm:ss");
     const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
     return setDoc(docRef, {
       complete: true,
