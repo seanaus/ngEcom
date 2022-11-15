@@ -28,13 +28,13 @@ export class DateService {
   }
   format(date: Date, formatString: string = "dd/mm/yyyy hh:mm:ss:ms") {
 
-    formatString = formatString.replace('dd', this.padLeft(date.getDate().toString(), "0", Math.abs(date.getDate().toString().length - 2)));
-    formatString = formatString.replace('mm', this.padLeft(date.getMonth().toString(), "0", Math.abs(date.getMonth().toString().length - 2)));
+    formatString = formatString.replace('dd', this.padLeft(date.getDate().toString(), "0", 2));
+    formatString = formatString.replace('mm', this.padLeft(date.getMonth().toString(), "0", 2));
     formatString = formatString.replace('yyyy', date.getFullYear().toString());
-    formatString = formatString.replace('hh', this.padLeft(date.getHours().toString(), "0", Math.abs(date.getHours().toString().length - 2)));
-    formatString = formatString.replace('mm', this.padLeft(date.getMinutes().toString(), "0", Math.abs(date.getMinutes().toString().length - 2)));
-    formatString = formatString.replace('ss', this.padLeft(date.getSeconds().toString(), "0", Math.abs(date.getSeconds().toString().length - 2)));
-    formatString = formatString.replace('ms', this.padLeft(date.getMilliseconds().toString(), "0", Math.abs(date.getMilliseconds().toString().length - 2)));
+    formatString = formatString.replace('hh', this.padLeft(date.getHours().toString(), "0", 2));
+    formatString = formatString.replace('mm', this.padLeft(date.getMinutes().toString(), "0", 2));
+    formatString = formatString.replace('ss', this.padLeft(date.getSeconds().toString(), "0", 2));
+    formatString = formatString.replace('ms', this.padLeft(date.getMilliseconds().toString(), "0", 2));
     return formatString
   }
   padLeft(source: string, char: string, len: number) {
