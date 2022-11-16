@@ -81,7 +81,7 @@ export class CartService {
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss:ms")
+      created: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss")
     });
   }
   async getCart(cartId: string) {
@@ -147,11 +147,13 @@ export class CartService {
     return setDoc(docRef, data, { merge: true })
   }
   async complete() {
-    const now = this.dateService.getDateTime({},"dd/mm/yyyy hh:mm:ss");
+    // const now = this.dateService.getDateTime({},"dd/mm/yyyy hh:mm:ss");
     const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
     return setDoc(docRef, {
-      complete: true,
-      completed: now
+      payment: {
+        completed: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss")
+      },
+      archived: true
     },
     { merge: true })
   }
