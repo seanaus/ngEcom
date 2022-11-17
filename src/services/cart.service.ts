@@ -13,37 +13,22 @@ export class CartService {
 
   userId: string | null = null;
   cartId: string | null = null;
-  // forename: any;
-  // surname: any;
-  // address1: any;
-  // address2: any;
-  // town: any;
-  // city: any;
-  // county: any;
-  // postcode: any;
-  // telephone: any;
-  // email: any;
-  // nameOnCard: any;
-  // cardNo: any;
-  // expiryDate: any;
-  // csv: any;
-  created = new Date();
-
   cart: any
 
   constructor(private db: Firestore,
     private cookieService: CookieService,
     private dateService: DateService) {
+    // const promiseToResolve  = this.init();
     this.init();
   }
 
   async init() {
     // LATER IF NO USERID ?????
     if(this.userId === null) this.userId = this.cookieService.getCookie("userId");
-    if(this.cartId === null) this.cartId = this.cookieService.getCookie("cartId");
+    if(this.cartId === null || this.cartId ==="") this.cartId = this.cookieService.getCookie("cartId");
 
     // Create Cart in Firebase & return CartId
-    if(this.cartId === null) {
+    if(this.cartId === null || this.cartId ==="") {
       const docRef = await this.createCart();
       this.cartId = docRef.id;
       this.cookieService.setCookie("cartId", this.cartId, 30);
@@ -55,33 +40,19 @@ export class CartService {
     })
     return Promise.resolve(true)
   }
-  clearCart() {
+  async clearCart() {
     this.cart = {};
     this.cartId = "";
+    await this.init();
   }
   async createCart() {
     const colRef = collection(this.db, "cart")
     return await addDoc(colRef, {
       userId: this.userId,
-      // forename: "",
-      // surname: "",
-      // address1: "",
-      // address2: "",
-      // town: "",
-      // city: "",
-      // county: "",
-      // postcode: "",
-      // telephone: "",
-      // email: "",
-      // nameOnCard: "",
-      // cardNo: "",
-      // expiryDate: "",
-      // csv: "",
-      // processed: "",
       items: this.cart?.items ?? [] as Array<any>,
       totalCount: 0,
       totalCost: 0,
-      created: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss")
+      created: this.dateService.getDateTime(this.dateService.setParams("dd/mm/yyyy hh:mm:ss"))
     });
   }
   async getCart(cartId: string) {
@@ -92,7 +63,7 @@ export class CartService {
     return this.cart.items.findIndex((item:any) => item.id === newItem.id)
   }
   async add(item: Product) {
-    this.logCart();
+    // this.logCart();
     const index = this.itemExists(item)
     if(index === -1) {
       this.cart.items = [...this.cart.items, { ...item, cost: item.unitCost, quantity: 1 }];
@@ -121,8 +92,6 @@ export class CartService {
   }
 
   calculateTotals() {
-    // console.log("TOTALS");
-    // console.log(JSON.stringify(this.cart));
     if (this.cart.items.length > 0) {
       this.cart.totalCount = this.cart.items.map((item: any) => { return +item.quantity }).reduce(aggregate)
       this.cart.totalCost = this.cart.items.map((item: any) => { return +item.cost }).reduce(aggregate)
@@ -147,11 +116,10 @@ export class CartService {
     return setDoc(docRef, data, { merge: true })
   }
   async complete() {
-    // const now = this.dateService.getDateTime({},"dd/mm/yyyy hh:mm:ss");
     const docRef = doc(this.db, "cart", (this.cartId === null) ? "" : this.cartId);
     return setDoc(docRef, {
       payment: {
-        completed: this.dateService.getDateTime({}, "dd/mm/yyyy hh:mm:ss")
+        completed: this.dateService.getDateTime(this.dateService.setParams("dd/mm/yyyy hh:mm:ss"))
       },
       archived: true
     },

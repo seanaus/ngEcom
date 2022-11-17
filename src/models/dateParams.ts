@@ -1,4 +1,4 @@
-export interface DateParams {
+export interface IDateParams {
     day?: number;
     month?: number;
     year?: number;
@@ -6,4 +6,5 @@ export interface DateParams {
     minute?: number;
     second?: number;
     milliSecond?: number;
+    formatString?: string;
 }
