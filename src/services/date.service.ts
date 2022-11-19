@@ -1,23 +1,43 @@
 import { Injectable } from '@angular/core';
-import { DateParams } from '../models/dateParams'
+import { IDateParams } from '../models/dateParams'
 @Injectable({
   providedIn: 'root'
 })
 export class DateService {
 
   constructor() { }
-  init(day?: number, month?: number, year?: number, hour: number = 0, minute: number = 0, second: number = 0, milliSecond: number = 0) {
-    return (day === undefined || month === undefined || year === undefined) ? new Date() : new Date(`${year}/${month}/${day} ${hour}:${minute}:${second}:${milliSecond}`);
+  init(datePart: IDateParams) {
+    return (datePart.day === undefined || datePart.month === undefined || datePart.year === undefined) ? new Date() : new Date(`${datePart.year}/${datePart.month}/${datePart.day} ${datePart.hour}:${datePart.minute}:${datePart.second}:${datePart.milliSecond}`);
   }
-  // setDateTime(day: number, month: number, year: number, hour: number = 0, minute: number = 0, second: number = 0, milliSecond: number = 0) {
-  //   const date = this.init(day, month, year, hour, minute, second, milliSecond);
-  //   return date;
-  // }
-  getDateTime(datePart: DateParams, formatString?: string) {
-    const date = this.init(datePart.day, datePart.month, datePart.year, datePart.hour, datePart.minute, datePart.second, datePart.milliSecond);
-    // const localDateTime = `${this.getLocalDate(date)} ${this.getLocalTime(date)}`;
-    // const customDateTime = this.formatDateTime(date, formatString !== "" ? formatString : "dd/mm/yyyy hh:mm:ss:ms");
-    return formatString === "" ? `${this.getLocalDate(date)} ${this.getLocalTime(date)}` : this.format(date, formatString);
+  setParams(formatString = "yyyy/mm/dd hh:mm:ss:ms",
+            day?: number,
+            month?: number,
+            year?: number,
+            hour: number = 0,
+            minute: number = 0,
+            second: number = 0,
+            milliSecond: number = 0): IDateParams {
+
+    if(day !== undefined && month !== undefined && year !== undefined) {
+      return {
+        day: day,
+        month: month,
+        year: year,
+        hour: hour,
+        minute: minute,
+        second: second,
+        milliSecond: milliSecond,
+        formatString: formatString
+      }
+    } else {
+      return {
+        formatString: formatString
+      }
+    }
+  }
+  getDateTime(datePart: IDateParams) {
+    const date = this.init(datePart);
+    return datePart.formatString === "" ? `${this.getLocalDate(date)} ${this.getLocalTime(date)}` : this.format(date, datePart.formatString);
 
   }
   getLocalDate(date: Date) {
@@ -26,16 +46,16 @@ export class DateService {
   getLocalTime(date: Date) {
     return `${date.toLocaleTimeString()}:${date.getMilliseconds().toString()}`
   }
-  format(date: Date, formatString: string = "dd/mm/yyyy hh:mm:ss:ms") {
-
-    formatString = formatString.replace('dd', this.padLeft(date.getDate().toString(), "0", 2));
-    formatString = formatString.replace('mm', this.padLeft((date.getMonth() + 1).toString(), "0", 2));
-    formatString = formatString.replace('yyyy', date.getFullYear().toString());
-    formatString = formatString.replace('hh', this.padLeft(date.getHours().toString(), "0", 2));
-    formatString = formatString.replace('mm', this.padLeft(date.getMinutes().toString(), "0", 2));
-    formatString = formatString.replace('ss', this.padLeft(date.getSeconds().toString(), "0", 2));
-    formatString = formatString.replace('ms', this.padLeft(date.getMilliseconds().toString(), "0", 2));
-    return formatString
+  format(dateIn: Date, customLayout: string = "") {
+    let dateString = customLayout === "" ? "yyyy/mm/dd hh:mm:ss:ms" : customLayout
+    dateString = dateString.replace('dd', this.padLeft(dateIn.getDate().toString(), "0", 2));
+    dateString = dateString.replace('mm', this.padLeft((dateIn.getMonth() + 1).toString(), "0", 2));
+    dateString = dateString.replace('yyyy', dateIn.getFullYear().toString());
+    dateString = dateString.replace('hh', this.padLeft(dateIn.getHours().toString(), "0", 2));
+    dateString = dateString.replace('mm', this.padLeft(dateIn.getMinutes().toString(), "0", 2));
+    dateString = dateString.replace('ss', this.padLeft(dateIn.getSeconds().toString(), "0", 2));
+    dateString = dateString.replace('ms', this.padLeft(dateIn.getMilliseconds().toString(), "0", 2));
+    return dateString
   }
   padLeft(source: string, char: string, len: number) {
     return source.length < len ? `${this.pad(char, len)}${source}` : `${source}`

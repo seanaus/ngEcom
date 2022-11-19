@@ -1,67 +1,48 @@
 <div class="row">
   <form [formGroup]="checkoutForm" class="pannel" (ngSubmit) = "onSubmit()">
     <h3>Delivery Details</h3>
-    <!-- <label>
-      First Name: -->
+
+    <div formGroupName="delivery">
       <input type="text" 
         formControlName="forename" 
         placeholder="FORENAME">
-    <!-- </label> -->
-    <!-- <label>
-      Last Name: -->
+
       <input type="text" 
         formControlName="surname" 
         placeholder="SURNAME">
-    <!-- </label> -->
-    <div formGroupName="address">
-      <!-- <label>
-        Address Line 1: -->
-        <input type="text" 
-          formControlName="address1" 
-          placeholder="ADDRESS1">
-      <!-- </label> -->
-      <!-- <label>
-        Address Line 2: -->
-        <input type="text" 
-          formControlName="address2" 
-          placeholder="ADDRESS2">
-      <!-- </label> -->
-      <!-- <label>
-        Town: -->
-        <input type="text" 
-          formControlName="town" 
-          placeholder="TOWN">
-      <!-- </label> -->
-      <!-- <label>
-        City: -->
-        <input type="text" 
-          formControlName="city" 
-          placeholder="CITY">
-      <!-- </label>
-      <label>
-        County: -->
-        <input type="text" 
-          formControlName="county" 
-          placeholder="COUNTY">
-      <!-- </label> -->
-      <!-- <label>
-        Postcode: -->
-        <input type="text" 
-          formControlName="postcode" 
-          placeholder="POSTCODE">
-      <!-- </label>
-      <label>
-        Telephone: -->
-        <input type="text" 
-          formControlName="telephone" 
-          placeholder="TELEPHONE">
-      <!-- </label>
-      <label>
-        Email: -->
-        <input type="text" 
-          formControlName="email" 
-          placeholder="EMAIL">
-      <!-- </label> -->
+
+      <input type="text" 
+        formControlName="address1" 
+        placeholder="ADDRESS1">
+
+      <input type="text" 
+        formControlName="address2" 
+        placeholder="ADDRESS2">
+
+      <input type="text" 
+        formControlName="town" 
+        placeholder="TOWN">
+
+      <input type="text" 
+        formControlName="city" 
+        placeholder="CITY">
+
+      <input type="text" 
+        formControlName="county" 
+        placeholder="COUNTY">
+
+      <input type="text" 
+        formControlName="postcode" 
+        placeholder="POSTCODE">
+
+      <input type="text" 
+        formControlName="telephone" 
+        placeholder="TELEPHONE">
+
+      <input type="text" 
+        formControlName="email" 
+        placeholder="EMAIL">
+
     </div>
     <div class="btnBar">
       <button  (click)="onCancel()">BACK</button>

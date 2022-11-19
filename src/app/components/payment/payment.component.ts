@@ -1,5 +1,5 @@
 import { CartService } from 'src/services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -13,10 +13,6 @@ import { CookieService } from 'src/services/cookie.service';
 export class PaymentComponent implements OnInit {
   cartId = "";
   cart: any;
-  // nameOnCard : any;
-  // cardNo: any;
-  // expiryDate: any;
-  // csv : any;
 
   payForm = this.fb.group({
     payment: this.fb.group({
@@ -46,26 +42,14 @@ export class PaymentComponent implements OnInit {
     this.router.navigateByUrl(`/cart/checkout/${this.cartId}`);
   }
   async onSubmit() {
-    // const submission = this.payForm.getRawValue();
-    // this.nameOnCard = submission?.nameOnCard ?? '';
-    // this.cardNo = submission?.cardNo ?? '';
-    // this.expiryDate = submission?.expiryDate ?? '';
-    // this.csv = submission?.csv ?? '';
-    // this.logInfo();
     const submission = this.payForm.getRawValue();
     await this.cartService.checkout(submission);
     await this.cartService.complete();
-    this.archiveCart();
+    await this.archiveCart();
   }
-  logInfo() {
-    // console.log(`NameOnCard: ${ this.nameOnCard }`);
-    // console.log(`CardNo: ${ this.cardNo }`);
-    // console.log(`EXPIRY: ${ this.expiryDate }`);
-    // console.log(`CSV: ${ this.csv }`);
-  }
-  archiveCart() {
+  async archiveCart() {
     this.cookieService.expireCookie("cartId", this.cartId)
-    this.cartService.clearCart();
+    await this.cartService.clearCart();
     this.router.navigateByUrl(`/home`);
   }
 
