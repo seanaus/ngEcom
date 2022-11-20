@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/models/product';
+// import { AuthService } from "../../../services/auth.service";
+// import { ActivatedRoute, Router } from '@angular/router';
+// import { AuthGuard } from "../../../services/auth-guard";
+
 import { ItemCardOptions } from 'src/enums/itemCardOptions';
 @Component({
   selector: 'app-item-card',
@@ -13,10 +17,20 @@ export class ItemCardComponent implements OnInit {
 
   cardOptions = ItemCardOptions
   routerLink: any = null;
-  constructor() { }
+  // auth = this.authService.isLoggedIn;
+  // constructor(private authService: AuthService, 
+  //             private router: Router,
+  //             private route: ActivatedRoute ) { }
 
+  constructor() {}
   ngOnInit(): void {
     if (this.cardType === this.cardOptions.Product) {
+      // if (this.auth) {
+      //   this.routerLink = ['product-detail/', this.item.id];
+      // } else {
+      //   this.routerLink = 'home';
+      //   this.router.navigateByUrl("home")
+      // }
       this.routerLink = ['product-detail/', this.item.id];
     }
   }

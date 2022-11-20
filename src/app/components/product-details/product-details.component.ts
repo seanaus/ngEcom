@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/models/product';
 import { CartService } from 'src/services/cart.service';
 import { ProductService } from 'src/services/product.service';
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
   selector: 'app-product-details',
@@ -15,9 +16,11 @@ export class ProductDetailsComponent implements OnInit {
   subscription: any
   userId: string | undefined ;
   Id: string = "";
+  auth = this.authService.isLoggedIn;
 
   constructor(private productService: ProductService,
               private cartService: CartService,
+              private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -42,8 +45,12 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(item: Product) {
-    this.cartService.add(item)
-    this.router.navigateByUrl("/products");
+    if(this.auth) {
+      this.cartService.add(item)
+      this.router.navigateByUrl("/products");
+    } else {
+      this.router.navigateByUrl("/logIn");
+    }
   }
 
 }
