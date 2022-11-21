@@ -6,8 +6,12 @@ import { IDateParams } from '../models/dateParams'
 export class DateService {
 
   constructor() { }
+  
   init(datePart: IDateParams) {
-    return (datePart.day === undefined || datePart.month === undefined || datePart.year === undefined) ? new Date() : new Date(`${datePart.year}/${datePart.month}/${datePart.day} ${datePart.hour}:${datePart.minute}:${datePart.second}:${datePart.milliSecond}`);
+    // Return Date object, either current Date/Time, or custom (If values set within IDateParams parameter)
+    return (datePart.day === undefined || datePart.month === undefined || datePart.year === undefined)
+      ? new Date()
+      : new Date(`${datePart.year}/${datePart.month}/${datePart.day} ${datePart.hour}:${datePart.minute}:${datePart.second}:${datePart.milliSecond}`);
   }
   setParams(formatString = "yyyy/mm/dd hh:mm:ss:ms",
             day?: number,
@@ -17,7 +21,8 @@ export class DateService {
             minute: number = 0,
             second: number = 0,
             milliSecond: number = 0): IDateParams {
-
+    // Return parameters passed via IDateParams instance, 
+    // 'formatString' mandatory, therefore  defaulted when not supplied.
     if(day !== undefined && month !== undefined && year !== undefined) {
       return {
         day: day,
@@ -35,9 +40,13 @@ export class DateService {
       }
     }
   }
+  // If no formatString supplied, return Date/Time
+  // If formatString supplied, return Date/Time formatted as specified within it.
   getDateTime(datePart: IDateParams) {
     const date = this.init(datePart);
-    return datePart.formatString === "" ? `${this.getLocalDate(date)} ${this.getLocalTime(date)}` : this.format(date, datePart.formatString);
+    return datePart.formatString === ""
+      ? `${this.getLocalDate(date)} ${this.getLocalTime(date)}`
+      : this.format(date, datePart.formatString);
 
   }
   getLocalDate(date: Date) {
@@ -46,6 +55,8 @@ export class DateService {
   getLocalTime(date: Date) {
     return `${date.toLocaleTimeString()}:${date.getMilliseconds().toString()}`
   }
+  // Overlay the vales of dateIn (day,month,year,hours,minutes,second,milliseconds) over the formatString
+  // The resulting string representaion of the dateIn is returned based on the formatString.
   format(dateIn: Date, customLayout: string = "") {
     let dateString = customLayout === "" ? "yyyy/mm/dd hh:mm:ss:ms" : customLayout
     dateString = dateString.replace('dd', this.padLeft(dateIn.getDate().toString(), "0", 2));

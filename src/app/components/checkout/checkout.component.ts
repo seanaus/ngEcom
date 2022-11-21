@@ -16,18 +16,6 @@ export interface IField {
 export class CheckoutComponent implements OnInit {
   cartId = "";
   cart: any;
-  // forename: any;
-  // surname: any;
-  // address1: any;
-  // address2 : any;
-  // town: any;
-  // city : any;
-  // county: any;
-  // postcode: any;
-  // telephone: any;
-  // email: any;
-
-  // fieldList: IField[] = [];
 
   constructor(private cartService: CartService,
     private router: Router,
@@ -63,21 +51,6 @@ export class CheckoutComponent implements OnInit {
     }
     async onSubmit() {
       const submission = this.checkoutForm.getRawValue();
-      // console.log(submission);
-
-      //this.fieldList = [...this.fieldList, { name: "", value: ""}]
-      // this.forename = submission?.forename ?? '';
-      // this.surname = submission?.surname ?? '';
-      // this.address1 = submission?.address?.address1 ?? '';
-      // this.address2 = submission?.address?.address2 ?? '';
-      // this.town = submission?.address?.town ?? '';
-      // this.city = submission?.address?.city ?? '';
-      // this.county = submission?.address?.county ?? '';
-      // this.postcode = submission?.address?.postcode ?? '';
-      // this.telephone = submission?.address?.telephone ?? '';
-      // this.email = submission?.address?.email ?? '';
-      // this.logInfo();
-      // this.printForm(submission);
       await this.cartService.checkout(submission);
       this.router.navigateByUrl(`/cart/checkout/payment/${ this.cartId}`);
     }
@@ -91,17 +64,4 @@ export class CheckoutComponent implements OnInit {
 
     // }
 
-
-    // logInfo() {
-    //   console.log(`Forename: ${ this.forename }`);
-    //   console.log(`Surname: ${ this.surname }`);
-    //   console.log(`Address1: ${ this.address1 }`);
-    //   console.log(`Address2: ${ this.address2 }`);
-    //   console.log(`Town: ${ this.town }`);
-    //   console.log(`City: ${ this.city }`);
-    //   console.log(`County: ${ this.county }`);
-    //   console.log(`Postcode: ${ this.postcode }`);
-    //   console.log(`Telephone: ${ this.telephone }`);
-    //   console.log(`Email: ${ this.email }`);
-    // }
 }
